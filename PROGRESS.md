@@ -49,18 +49,16 @@ concentrated in `plugins` (23), `skills`/`agents`/`commands`/`workflows` (40),
 
 ## Phase 2 — tools: **started**
 
-`path-security` is the highest-risk module in the original (1,782 lines with
-2,778 lines of tests) and is now ported and pinned:
+Two tool modules ported and pinned against the original's real behaviour.
 
-- `src/pathsec.rs` implements `isSensitivePath`, `isPathWithinSandbox`,
-  `resolveRelativeTraversals`, `extractDangerousPatterns`, `extractGitNoVerify`
-  and `extractSensitivePathsFromCommand`
-- `contract/path-rules.json` holds 53 fixtures produced by **calling the
-  original implementation as a library**
-- `tests/path_rules.rs` replays every fixture; all 7 contract tests pass
+### path-security
 
-Behaviours that only the fixtures reveal, and that a reading of the source would
-have got wrong:
+`src/pathsec.rs` implements `isSensitivePath`, `isPathWithinSandbox`,
+`resolveRelativeTraversals`, `extractDangerousPatterns`, `extractGitNoVerify`
+and `extractSensitivePathsFromCommand`. Pinned by
+`contract/path-rules.json` (53 fixtures) and `tests/path_rules.rs`.
+
+What only the fixtures reveal:
 
 - `rm -rf /` is **not** flagged; only `rm -rf ~` is. The pattern list has a gap.
 - `.envrc` is **not** sensitive, and `.env.example` is explicitly excluded.
@@ -72,8 +70,24 @@ have got wrong:
 - `-n` only means `--no-verify` for `git commit` / `git am`; elsewhere git gives
   it a harmless meaning, so flagging it would be a false positive.
 
-Still missing in P2: `read`, `write`, `edit`, `shell`, `pty`, and the
-`PathAccessDeniedError` / confirmation flow.
+### read (file-type detection)
+
+`src/iotools.rs` implements `detectImageType` and `formatSize`, pinned by
+`contract/io-rules.json` (14 fixtures built from real encoded bytes) and
+`tests/io_rules.rs`.
+
+What only the fixtures reveal:
+
+- SVG detection accepts a document starting with `<svg`, but **rejects** one
+  that starts with `<?xml`, even though both are valid SVG. The original only
+  checks `startsWith('<?xml')` after trimming, and the XML case falls through
+  because `file-type` reports it as generic XML.
+- `application/pdf` and `application/zip` are identified but never treated as
+  images.
+- A truncated PNG header is not detected at all — no minimum-length check.
+
+Still missing in P2: `write`, `edit`, `shell`, `pty`, and the
+`PathAccessDeniedError` / confirmation flow that path-security drives.
 
 ## Phases 3–6 — not started
 

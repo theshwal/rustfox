@@ -1,0 +1,118 @@
+{
+  "description": "Behaviour captured by calling the original read/write/edit tool modules. detectImageType fixtures feed real encoded bytes; schemas are the tools' own JSON Schema.",
+  "detectImageTypeCases": [
+    {
+      "fn": "detectImageType",
+      "name": "png-real-header",
+      "path": "b.png",
+      "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+      "expect": "image/png",
+      "error": null
+    },
+    {
+      "fn": "detectImageType",
+      "name": "jpeg",
+      "path": "c.jpg",
+      "data": "/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwcJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPDU0NP/bAEMBCQkJDAsMGA0NGDIhHCEyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/9oACAEBAAA/APn+iiigD//Z",
+      "expect": "image/jpeg",
+      "error": null
+    },
+    {
+      "fn": "detectImageType",
+      "name": "gif",
+      "path": "d.gif",
+      "data": "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "expect": "image/gif",
+      "error": null
+    },
+    {
+      "fn": "detectImageType",
+      "name": "webp",
+      "path": "e.webp",
+      "data": "UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=",
+      "expect": "image/webp",
+      "error": null
+    },
+    {
+      "fn": "detectImageType",
+      "name": "bmp",
+      "path": "f.bmp",
+      "data": "Qk0eAAAAAAAAABoAAAQEAAAAAABAgMEBQYHCAkKCwkKCw==",
+      "expect": "image/bmp",
+      "error": null
+    },
+    {
+      "fn": "detectImageType",
+      "name": "svg-xml",
+      "path": "g.svg",
+      "data": "PHhtbCB2ZXJzaW9uPSIxLjAiPz48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAvc3ZnIj48L3N2Zz4=",
+      "expect": null,
+      "error": null
+    },
+    {
+      "fn": "detectImageType",
+      "name": "svg-root",
+      "path": "h.svg",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==",
+      "expect": "image/svg+xml",
+      "error": null
+    },
+    {
+      "fn": "detectImageType",
+      "name": "svg-wrong-ext",
+      "path": "i.txt",
+      "data": "PHN2Zz48L3N2Zz4=",
+      "expect": null,
+      "error": null
+    },
+    {
+      "fn": "detectImageType",
+      "name": "text-plain",
+      "path": "j.txt",
+      "data": "aGVsbG8gd29ybGQ=",
+      "expect": null,
+      "error": null
+    },
+    {
+      "fn": "detectImageType",
+      "name": "json",
+      "path": "k.json",
+      "data": "eyJhIjoxfQ==",
+      "expect": null,
+      "error": null
+    },
+    {
+      "fn": "detectImageType",
+      "name": "pdf",
+      "path": "l.pdf",
+      "data": "JVBERi0xLjQKMSAwIG9iago8Pz4KZW5kb2JqCnRyYWlsZXIKPD4+CgUlJVE9G",
+      "expect": null,
+      "error": null
+    },
+    {
+      "fn": "detectImageType",
+      "name": "zip",
+      "path": "m.zip",
+      "data": "UEsDBAoAAAAAAAIAAoAAAAQAAAAIAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA",
+      "expect": null,
+      "error": null
+    },
+    {
+      "fn": "detectImageType",
+      "name": "empty",
+      "path": "n.png",
+      "data": "",
+      "expect": null,
+      "error": null
+    },
+    {
+      "fn": "detectImageType",
+      "name": "truncated-png",
+      "path": "o.png",
+      "data": "aVZCTi13",
+      "expect": null,
+      "error": null
+    }
+  ],
+  "toolSchemas": {}
+}
