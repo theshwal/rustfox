@@ -1,6 +1,6 @@
 {
   "description": "checkPathsAccess behaviour captured by calling the original against a real workdir outside /tmp. deniedPaths/sensitivePaths are resolved paths, deduplicated. Relative inputs resolve against the process cwd, which is why they do not point at workdir.",
-  "workdir": "/home/hermesy/openfox-workdir-OKiZPl",
+  "workdir": "/home/hermesy/openfox-path-access-fixture",
   "workdirLayout": [
     "src/index.ts",
     ".env",
@@ -221,7 +221,7 @@
     {
       "name": "absolute-inside",
       "paths": [
-        "/home/hermesy/openfox-workdir-OKiZPl/src/index.ts"
+        "/home/hermesy/openfox-path-access-fixture/src/index.ts"
       ],
       "expect": {
         "needsConfirmation": false,
