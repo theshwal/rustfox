@@ -206,7 +206,36 @@ What only the fixtures reveal:
 - a custom message replaces the generated one entirely: neither the reason
   phrase nor the path list survives, while `error.reason` still holds the truth.
 
-Still missing in P2: `write`, `edit` file I/O and diagnostics, `shell`, `pty`.
+### write (content encoding and tool schemas)
+
+`src/encoding_io.rs` implements `encodeContent`/`decodeContent`. Pinned by
+`contract/write-rules.json` (308 encode cases, 28 round trips) and
+`tests/write_rules.rs`. The three tool JSON Schemas the model actually sees
+(`read_file`, `write_file`, `edit_file`) are captured in the same contract: the
+schema is part of the interface, not an implementation detail.
+
+Two real bugs in the port, both caught by the contract:
+
+- UTF-32 little-endian shared the two-byte UTF-16 BOM, writing 2 bytes where the
+  original writes 4 (`FF FE 00 00`). The result is a file whose first character
+  reads back as U+0000.
+- the lossy substitution into a single-byte table is counted in **UTF-16 code
+  units**, not characters and not UTF-8 bytes: a CJK ideograph becomes one `?`
+  while an emoji becomes two, because iconv converts through UTF-16 and sees a
+  surrogate pair. Two wrong implementations were written before the behaviour
+  was measured rather than guessed.
+
+What the fixtures reveal about the original:
+
+- single-byte encodings are lossy and **do not error**. Writing an emoji to a
+  Latin-1 file succeeds and silently corrupts the character, so an agent
+  honouring a project's Latin-1 convention loses non-Latin text with no signal.
+- an unrecognised encoding name is an error, never a silent UTF-8 fallback
+- names are normalised before dispatch, so `utf8`, `ascii` and `UTF-8` share a
+  branch and `UTF-16` resolves to UTF-16LE
+
+Still missing in P2: `pty`, and the file I/O that write and edit perform around
+these encoders.
 
 ## Phases 3–6 — not started
 
