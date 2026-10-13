@@ -1,0 +1,555 @@
+{
+  "description": "Encoding behaviour captured by calling src/server/utils/encoding.ts directly. detectEncoding fixtures include BOM variants and invalid UTF-8; decode/encode cover the supported encodings and a BOM round-trip.",
+  "detectCases": [
+    {
+      "fn": "detectEncoding",
+      "name": "empty",
+      "data": "",
+      "expect": {
+        "encoding": "utf-8",
+        "confidence": 1,
+        "bomSize": 0
+      },
+      "error": null
+    },
+    {
+      "fn": "detectEncoding",
+      "name": "ascii",
+      "data": "aGVsbG8gd29ybGQ=",
+      "expect": {
+        "encoding": "utf-8",
+        "confidence": 0.95,
+        "bomSize": 0
+      },
+      "error": null
+    },
+    {
+      "fn": "detectEncoding",
+      "name": "utf8-accented",
+      "data": "aMOpbGxvIHfDtnJsZA==",
+      "expect": {
+        "encoding": "utf-8",
+        "confidence": 0.95,
+        "bomSize": 0
+      },
+      "error": null
+    },
+    {
+      "fn": "detectEncoding",
+      "name": "utf8-emoji",
+      "data": "YfCfjoli",
+      "expect": {
+        "encoding": "utf-8",
+        "confidence": 0.95,
+        "bomSize": 0
+      },
+      "error": null
+    },
+    {
+      "fn": "detectEncoding",
+      "name": "utf8-cjk",
+      "data": "5pel5pys6Kqe44OG44Kt44K544OI",
+      "expect": {
+        "encoding": "utf-8",
+        "confidence": 0.95,
+        "bomSize": 0
+      },
+      "error": null
+    },
+    {
+      "fn": "detectEncoding",
+      "name": "bom-utf8",
+      "data": "77u/aGVsbG8=",
+      "expect": {
+        "encoding": "utf-8",
+        "confidence": 1,
+        "bomSize": 3
+      },
+      "error": null
+    },
+    {
+      "fn": "detectEncoding",
+      "name": "bom-utf16le",
+      "data": "//5oAGUAbABsAG8A",
+      "expect": {
+        "encoding": "utf-16le",
+        "confidence": 1,
+        "bomSize": 2
+      },
+      "error": null
+    },
+    {
+      "fn": "detectEncoding",
+      "name": "bom-utf16be",
+      "data": "/v8AaABl",
+      "expect": {
+        "encoding": "utf-16be",
+        "confidence": 1,
+        "bomSize": 2
+      },
+      "error": null
+    },
+    {
+      "fn": "detectEncoding",
+      "name": "bom-utf32le",
+      "data": "//4AAGgAAAA=",
+      "expect": {
+        "encoding": "utf-32",
+        "confidence": 1,
+        "bomSize": 4
+      },
+      "error": null
+    },
+    {
+      "fn": "detectEncoding",
+      "name": "bom-utf32be",
+      "data": "AAD+/wAAAGg=",
+      "expect": {
+        "encoding": "utf-32be",
+        "confidence": 1,
+        "bomSize": 4
+      },
+      "error": null
+    },
+    {
+      "fn": "detectEncoding",
+      "name": "latin1-high",
+      "data": "Y2Fm6SBuYe92ZQ==",
+      "expect": {
+        "encoding": "windows-1252",
+        "confidence": 0.95,
+        "bomSize": 0
+      },
+      "error": null
+    },
+    {
+      "fn": "detectEncoding",
+      "name": "latin1-invalid-utf8",
+      "data": "//5B/0I=",
+      "expect": {
+        "encoding": "utf-16le",
+        "confidence": 1,
+        "bomSize": 2
+      },
+      "error": null
+    },
+    {
+      "fn": "detectEncoding",
+      "name": "invalid-utf8-run",
+      "data": "wyigoeIooQ==",
+      "expect": {
+        "encoding": "windows-1252",
+        "confidence": 0.95,
+        "bomSize": 0
+      },
+      "error": null
+    },
+    {
+      "fn": "detectEncoding",
+      "name": "single-byte-high",
+      "data": "bmHvdmUgculzdW3p",
+      "expect": {
+        "encoding": "ISO-8859-2",
+        "confidence": 0.9595963860832423,
+        "bomSize": 0
+      },
+      "error": null
+    }
+  ],
+  "decodeCases": [
+    {
+      "fn": "decodeContent",
+      "encoding": "utf-8",
+      "text": "plain",
+      "expect": "plain",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "utf-8",
+      "text": "héllo",
+      "expect": "héllo",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "utf-8",
+      "text": "日本",
+      "expect": "日本",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "utf-8",
+      "text": "mixed 123 text",
+      "expect": "mixed 123 text",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "ISO-8859-1",
+      "text": "plain",
+      "expect": "plain",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "ISO-8859-1",
+      "text": "héllo",
+      "expect": "héllo",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "ISO-8859-1",
+      "text": "日本",
+      "expect": "??",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "ISO-8859-1",
+      "text": "mixed 123 text",
+      "expect": "mixed 123 text",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "windows-1252",
+      "text": "plain",
+      "expect": "plain",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "windows-1252",
+      "text": "héllo",
+      "expect": "héllo",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "windows-1252",
+      "text": "日本",
+      "expect": "??",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "windows-1252",
+      "text": "mixed 123 text",
+      "expect": "mixed 123 text",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "Shift_JIS",
+      "text": "plain",
+      "expect": "plain",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "Shift_JIS",
+      "text": "héllo",
+      "expect": "h?llo",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "Shift_JIS",
+      "text": "日本",
+      "expect": "日本",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "Shift_JIS",
+      "text": "mixed 123 text",
+      "expect": "mixed 123 text",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "EUC-JP",
+      "text": "plain",
+      "expect": "plain",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "EUC-JP",
+      "text": "héllo",
+      "expect": "héllo",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "EUC-JP",
+      "text": "日本",
+      "expect": "日本",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "EUC-JP",
+      "text": "mixed 123 text",
+      "expect": "mixed 123 text",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "utf-16le",
+      "text": "plain",
+      "expect": "plain",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "utf-16le",
+      "text": "héllo",
+      "expect": "héllo",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "utf-16le",
+      "text": "日本",
+      "expect": "日本",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "utf-16le",
+      "text": "mixed 123 text",
+      "expect": "mixed 123 text",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "utf-16be",
+      "text": "plain",
+      "expect": "plain",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "utf-16be",
+      "text": "héllo",
+      "expect": "héllo",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "utf-16be",
+      "text": "日本",
+      "expect": "日本",
+      "error": null
+    },
+    {
+      "fn": "decodeContent",
+      "encoding": "utf-16be",
+      "text": "mixed 123 text",
+      "expect": "mixed 123 text",
+      "error": null
+    }
+  ],
+  "encodeCases": [
+    {
+      "fn": "encodeContent",
+      "encoding": "utf-8",
+      "text": "plain",
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "utf-8",
+      "text": "héllo",
+      "expect": "aMOpbGxv",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "utf-8",
+      "text": "日本",
+      "expect": "5pel5pys",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "utf-8",
+      "text": "mixed 123 text",
+      "expect": "bWl4ZWQgMTIzIHRleHQ=",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "ISO-8859-1",
+      "text": "plain",
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "ISO-8859-1",
+      "text": "héllo",
+      "expect": "aOlsbG8=",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "ISO-8859-1",
+      "text": "日本",
+      "expect": "Pz8=",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "ISO-8859-1",
+      "text": "mixed 123 text",
+      "expect": "bWl4ZWQgMTIzIHRleHQ=",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "windows-1252",
+      "text": "plain",
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "windows-1252",
+      "text": "héllo",
+      "expect": "aOlsbG8=",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "windows-1252",
+      "text": "日本",
+      "expect": "Pz8=",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "windows-1252",
+      "text": "mixed 123 text",
+      "expect": "bWl4ZWQgMTIzIHRleHQ=",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "Shift_JIS",
+      "text": "plain",
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "Shift_JIS",
+      "text": "héllo",
+      "expect": "aD9sbG8=",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "Shift_JIS",
+      "text": "日本",
+      "expect": "k/qWew==",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "Shift_JIS",
+      "text": "mixed 123 text",
+      "expect": "bWl4ZWQgMTIzIHRleHQ=",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "EUC-JP",
+      "text": "plain",
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "EUC-JP",
+      "text": "héllo",
+      "expect": "aI+rsWxsbw==",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "EUC-JP",
+      "text": "日本",
+      "expect": "xvzL3A==",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "EUC-JP",
+      "text": "mixed 123 text",
+      "expect": "bWl4ZWQgMTIzIHRleHQ=",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "utf-16le",
+      "text": "plain",
+      "expect": "cABsAGEAaQBuAA==",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "utf-16le",
+      "text": "héllo",
+      "expect": "aADpAGwAbABvAA==",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "utf-16le",
+      "text": "日本",
+      "expect": "5WUsZw==",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "utf-16le",
+      "text": "mixed 123 text",
+      "expect": "bQBpAHgAZQBkACAAMQAyADMAIAB0AGUAeAB0AA==",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "utf-16be",
+      "text": "plain",
+      "expect": "AHAAbABhAGkAbg==",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "utf-16be",
+      "text": "héllo",
+      "expect": "AGgA6QBsAGwAbw==",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "utf-16be",
+      "text": "日本",
+      "expect": "ZeVnLA==",
+      "error": null
+    },
+    {
+      "fn": "encodeContent",
+      "encoding": "utf-16be",
+      "text": "mixed 123 text",
+      "expect": "AG0AaQB4AGUAZAAgADEAMgAzACAAdABlAHgAdA==",
+      "error": null
+    }
+  ]
+}

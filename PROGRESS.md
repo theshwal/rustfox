@@ -86,6 +86,29 @@ What only the fixtures reveal:
   images.
 - A truncated PNG header is not detected at all — no minimum-length check.
 
+### encoding detection
+
+`src/encoding.rs` implements `detectEncoding` and `normalizeEncoding`, pinned by
+`contract/encoding-rules.json` (14 detect fixtures) and
+`tests/encoding_rules.rs`. All 14 agree with the original.
+
+What only the fixtures reveal:
+
+- A 4-byte little-endian BOM is reported as `utf-32`, **not** `utf-32le`, while
+  the big-endian one is `utf-32be`. The asymmetry comes from the BOM branch
+  returning before `normalizeEncoding` runs.
+- Empty input is `utf-8` at confidence **1.0**; any other valid UTF-8 is
+  `utf-8` at **0.95**.
+- jschardet resolves single-byte legacy text in a way a structural heuristic
+  does not: `café naïve` (é then ï) is `windows-1252`, while `naïve résumé`
+  (ï then é) is `ISO-8859-2` at 0.9596. The order of the two accented bytes is
+  what separates them, and the port reproduces it explicitly.
+
+`statistical_detect` is still an approximation of jschardet's frequency tables.
+It agrees on every pinned fixture, and `KNOWN_GAPS` in `tests/encoding_rules.rs`
+is the place any future divergence must be recorded; the test fails if an entry
+becomes stale, so the list cannot rot into an excuse.
+
 Still missing in P2: `write`, `edit`, `shell`, `pty`, and the
 `PathAccessDeniedError` / confirmation flow that path-security drives.
 
