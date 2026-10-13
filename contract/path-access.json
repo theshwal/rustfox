@@ -1,0 +1,250 @@
+{
+  "description": "checkPathsAccess behaviour captured by calling the original against a real workdir outside /tmp. deniedPaths/sensitivePaths are resolved paths, deduplicated. Relative inputs resolve against the process cwd, which is why they do not point at workdir.",
+  "workdir": "/home/hermesy/openfox-workdir-OKiZPl",
+  "workdirLayout": [
+    "src/index.ts",
+    ".env",
+    "config.json",
+    "id_rsa/ (directory)"
+  ],
+  "cases": [
+    {
+      "name": "empty",
+      "paths": [],
+      "expect": {
+        "needsConfirmation": false,
+        "deniedPaths": [],
+        "sensitivePaths": []
+      },
+      "error": null
+    },
+    {
+      "name": "single-inside",
+      "paths": [
+        "src/index.ts"
+      ],
+      "expect": {
+        "needsConfirmation": false,
+        "deniedPaths": [],
+        "sensitivePaths": []
+      },
+      "error": null
+    },
+    {
+      "name": "outside-etc",
+      "paths": [
+        "/etc/passwd"
+      ],
+      "expect": {
+        "needsConfirmation": true,
+        "deniedPaths": [
+          "/etc/passwd"
+        ],
+        "sensitivePaths": []
+      },
+      "error": null
+    },
+    {
+      "name": "inside-sensitive-env",
+      "paths": [
+        ".env"
+      ],
+      "expect": {
+        "needsConfirmation": true,
+        "deniedPaths": [],
+        "sensitivePaths": [
+          "/tmp/ofox-probe/.env"
+        ]
+      },
+      "error": null
+    },
+    {
+      "name": "outside-and-sensitive",
+      "paths": [
+        "/etc/passwd",
+        ".env"
+      ],
+      "expect": {
+        "needsConfirmation": true,
+        "deniedPaths": [
+          "/etc/passwd"
+        ],
+        "sensitivePaths": [
+          "/tmp/ofox-probe/.env"
+        ]
+      },
+      "error": null
+    },
+    {
+      "name": "duplicates",
+      "paths": [
+        "/etc/passwd",
+        "/etc/passwd"
+      ],
+      "expect": {
+        "needsConfirmation": true,
+        "deniedPaths": [
+          "/etc/passwd"
+        ],
+        "sensitivePaths": []
+      },
+      "error": null
+    },
+    {
+      "name": "duplicates-mixed-form",
+      "paths": [
+        "/etc/passwd",
+        "/etc/../etc/passwd"
+      ],
+      "expect": {
+        "needsConfirmation": true,
+        "deniedPaths": [
+          "/etc/passwd"
+        ],
+        "sensitivePaths": []
+      },
+      "error": null
+    },
+    {
+      "name": "allowed-root-tmp",
+      "paths": [
+        "/tmp/whatever"
+      ],
+      "expect": {
+        "needsConfirmation": false,
+        "deniedPaths": [],
+        "sensitivePaths": []
+      },
+      "error": null
+    },
+    {
+      "name": "sensitive-outside",
+      "paths": [
+        "/root/.env"
+      ],
+      "expect": {
+        "needsConfirmation": true,
+        "deniedPaths": [
+          "/root/.env"
+        ],
+        "sensitivePaths": [
+          "/root/.env"
+        ]
+      },
+      "error": null
+    },
+    {
+      "name": "id-rsa-directory",
+      "paths": [
+        "id_rsa"
+      ],
+      "expect": {
+        "needsConfirmation": true,
+        "deniedPaths": [],
+        "sensitivePaths": [
+          "/tmp/ofox-probe/id_rsa"
+        ]
+      },
+      "error": null
+    },
+    {
+      "name": "many-mixed",
+      "paths": [
+        "src/index.ts",
+        "config.json",
+        "/etc/shadow",
+        ".env"
+      ],
+      "expect": {
+        "needsConfirmation": true,
+        "deniedPaths": [
+          "/etc/shadow"
+        ],
+        "sensitivePaths": [
+          "/tmp/ofox-probe/.env"
+        ]
+      },
+      "error": null
+    },
+    {
+      "name": "traversal-inside",
+      "paths": [
+        "src/../config.json"
+      ],
+      "expect": {
+        "needsConfirmation": false,
+        "deniedPaths": [],
+        "sensitivePaths": []
+      },
+      "error": null
+    },
+    {
+      "name": "traversal-outside",
+      "paths": [
+        "../outside.txt"
+      ],
+      "expect": {
+        "needsConfirmation": false,
+        "deniedPaths": [],
+        "sensitivePaths": []
+      },
+      "error": null
+    },
+    {
+      "name": "dev-null",
+      "paths": [
+        "/dev/null"
+      ],
+      "expect": {
+        "needsConfirmation": true,
+        "deniedPaths": [
+          "/dev/null"
+        ],
+        "sensitivePaths": []
+      },
+      "error": null
+    },
+    {
+      "name": "sibling-workdir",
+      "paths": [
+        "/home/hermesy/sibling.txt"
+      ],
+      "expect": {
+        "needsConfirmation": true,
+        "deniedPaths": [
+          "/home/hermesy/sibling.txt"
+        ],
+        "sensitivePaths": []
+      },
+      "error": null
+    },
+    {
+      "name": "absolute-inside",
+      "paths": [
+        "/home/hermesy/openfox-workdir-OKiZPl/src/index.ts"
+      ],
+      "expect": {
+        "needsConfirmation": false,
+        "deniedPaths": [],
+        "sensitivePaths": []
+      },
+      "error": null
+    },
+    {
+      "name": "pem-outside",
+      "paths": [
+        "/etc/ssl/private/key.pem"
+      ],
+      "expect": {
+        "needsConfirmation": true,
+        "deniedPaths": [
+          "/etc/ssl/private/key.pem"
+        ],
+        "sensitivePaths": [
+          "/etc/ssl/private/key.pem"
+        ]
+      },
+      "error": null
+    }
+  ]
+}

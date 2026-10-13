@@ -161,8 +161,32 @@ The SHA-256 implementation is self-contained rather than a crate dependency,
 so it can be read next to the original's `createHash('sha256')`; it is checked
 against the NIST vectors including the 448-bit message.
 
+### checkPathsAccess (the gate everything passes through)
+
+`src/pathaccess.rs` implements `checkPathsAccess`, which read, write, edit and
+shell all funnel through before touching a path. Pinned by
+`contract/path-access.json` (17 fixtures captured against a real workdir) and
+`tests/path_access.rs`.
+
+What only the fixtures reveal:
+
+- a path can be **both** denied and sensitive, and then appears in both lists.
+  `needsConfirmation` only asks whether either list is non-empty, so the two
+  categories are not exclusive
+- the sensitivity check runs **independently** of the sandbox verdict, so a
+  sensitive file inside the workdir still asks for confirmation
+- `/dev/null` is listed among the "safe device paths" in the source, yet it is
+  still reported in `deniedPaths` when the workdir is elsewhere: the safe list
+  feeds a different check
+- relative inputs resolve against the **process cwd**, not the workdir. That is
+  why a recorded fixture for `../outside.txt` came back allowed on the
+  extraction machine: it landed in `/tmp`, an always-allowed root. The port
+  agrees with the original for absolute paths; that one relative fixture is
+  exempted in the test with the reason stated inline, because its verdict
+  describes a path that does not exist on the machine running the test.
+
 Still missing in P2: `write`, `edit` file I/O and diagnostics, `shell`, `pty`,
-and the `PathAccessDeniedError` / confirmation flow that path-security drives.
+and the `PathAccessDeniedError` / confirmation flow itself.
 
 ## Phases 3–6 — not started
 

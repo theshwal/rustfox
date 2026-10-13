@@ -3,6 +3,7 @@ pub mod editing;
 pub mod encoding;
 pub mod filetrack;
 pub mod iotools;
+pub mod pathaccess;
 pub mod pathsec;
 pub mod routes;
 pub mod session;
