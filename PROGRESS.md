@@ -47,9 +47,36 @@ Working and covered by tests:
 concentrated in `plugins` (23), `skills`/`agents`/`commands`/`workflows` (40),
 `mcp` (10), `dev-server` (9), `tasks` (13), `terminals` (4), `auto-update` (3).
 
-## Phases 2–6 — not started
+## Phase 2 — tools: **started**
 
-- P2 tools (`read`/`write`/`edit`/`path-security`/`shell`/pty) — ~18,700 lines
+`path-security` is the highest-risk module in the original (1,782 lines with
+2,778 lines of tests) and is now ported and pinned:
+
+- `src/pathsec.rs` implements `isSensitivePath`, `isPathWithinSandbox`,
+  `resolveRelativeTraversals`, `extractDangerousPatterns`, `extractGitNoVerify`
+  and `extractSensitivePathsFromCommand`
+- `contract/path-rules.json` holds 53 fixtures produced by **calling the
+  original implementation as a library**
+- `tests/path_rules.rs` replays every fixture; all 7 contract tests pass
+
+Behaviours that only the fixtures reveal, and that a reading of the source would
+have got wrong:
+
+- `rm -rf /` is **not** flagged; only `rm -rf ~` is. The pattern list has a gap.
+- `.envrc` is **not** sensitive, and `.env.example` is explicitly excluded.
+- `resolveRelativeTraversals` tracks `cd`, so `cd ../sibling` resolves against
+  the moved cwd, and `ls ./src` yields nothing because only `..` counts as a
+  traversal.
+- `extractSensitivePathsFromCommand` returns the token **as written** (`cat .env`
+  yields `.env`), not a resolved path.
+- `-n` only means `--no-verify` for `git commit` / `git am`; elsewhere git gives
+  it a harmless meaning, so flagging it would be a false positive.
+
+Still missing in P2: `read`, `write`, `edit`, `shell`, `pty`, and the
+`PathAccessDeniedError` / confirmation flow.
+
+## Phases 3–6 — not started
+
 - P3 agent loop, LLM providers, event store, session manager — ~42,000 lines
 - P4 MCP, plugins, skills, sub-agents, workflows, tasks — ~22,000 lines
 - P5 Svelte client replacing 597 React files — ~103,000 lines
@@ -73,3 +100,18 @@ Recorded because they are the point of having a harness:
 3. `exists()` read the first column as `i64`, so any check against a TEXT column
    always returned false — every existence check in the server was wrong, and
    nothing surfaced it until an HTTP test exercised a real round-trip.
+4. The regex engine anchored matches at offset 0 while `RegExp.test()` searches
+   the whole string, so `>\s*/dev/sd` failed to match `dd > /dev/sda`.
+
+## Running the original without destabilising the host
+
+The reference server spawns watchers and plugin subprocesses, and killing the
+parent takes that whole tree down with it. Everything here therefore runs
+**in-process** instead:
+
+- contract extraction imports the original's modules as a library
+  (`npx tsx scripts/extract-*.ts`), which starts no server and exits normally
+- the Rust side is exercised through `cargo test` against an in-memory router
+  (`tests/http.rs`), never a bound port
+
+No background process is ever started, so there is never anything to kill.

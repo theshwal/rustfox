@@ -1,4 +1,5 @@
 pub mod db;
+pub mod pathsec;
 pub mod routes;
 pub mod session;
 pub mod write;

@@ -1,0 +1,547 @@
+{
+  "description": "Fixtures captured by calling the original pure functions in src/server/tools/path-security.ts. The Rust port must produce identical results for every case.",
+  "workdir": "/home/user/project",
+  "caseCount": 53,
+  "cases": [
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(.env)",
+      "input": [
+        ".env"
+      ],
+      "expect": true,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(.env.local)",
+      "input": [
+        ".env.local"
+      ],
+      "expect": true,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(.env.production)",
+      "input": [
+        ".env.production"
+      ],
+      "expect": true,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(.envrc)",
+      "input": [
+        ".envrc"
+      ],
+      "expect": false,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(.env.example)",
+      "input": [
+        ".env.example"
+      ],
+      "expect": false,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(credentials.json)",
+      "input": [
+        "credentials.json"
+      ],
+      "expect": true,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(secrets.json)",
+      "input": [
+        "secrets.json"
+      ],
+      "expect": true,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(secret.yaml)",
+      "input": [
+        "secret.yaml"
+      ],
+      "expect": true,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(secrets.toml)",
+      "input": [
+        "secrets.toml"
+      ],
+      "expect": true,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(server.pem)",
+      "input": [
+        "server.pem"
+      ],
+      "expect": true,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(private.key)",
+      "input": [
+        "private.key"
+      ],
+      "expect": true,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(id_rsa)",
+      "input": [
+        "id_rsa"
+      ],
+      "expect": true,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(id_ed25519)",
+      "input": [
+        "id_ed25519"
+      ],
+      "expect": true,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(id_ecdsa)",
+      "input": [
+        "id_ecdsa"
+      ],
+      "expect": true,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(id_dsa)",
+      "input": [
+        "id_dsa"
+      ],
+      "expect": true,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(.netrc)",
+      "input": [
+        ".netrc"
+      ],
+      "expect": true,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(package.json)",
+      "input": [
+        "package.json"
+      ],
+      "expect": false,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(index.ts)",
+      "input": [
+        "index.ts"
+      ],
+      "expect": false,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(README.md)",
+      "input": [
+        "README.md"
+      ],
+      "expect": false,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(env.json)",
+      "input": [
+        "env.json"
+      ],
+      "expect": false,
+      "error": null
+    },
+    {
+      "fn": "isSensitivePath",
+      "label": "isSensitivePath(.environment)",
+      "input": [
+        ".environment"
+      ],
+      "expect": false,
+      "error": null
+    },
+    {
+      "fn": "isPathWithinSandbox",
+      "label": "isPathWithinSandbox(/home/user/project/src/index.ts)",
+      "input": [
+        "/home/user/project/src/index.ts",
+        "/home/user/project"
+      ],
+      "expect": {
+        "allowed": true,
+        "resolvedPath": "/home/user/project/src/index.ts"
+      },
+      "error": null
+    },
+    {
+      "fn": "isPathWithinSandbox",
+      "label": "isPathWithinSandbox(/home/user/project)",
+      "input": [
+        "/home/user/project",
+        "/home/user/project"
+      ],
+      "expect": {
+        "allowed": true,
+        "resolvedPath": "/home/user/project"
+      },
+      "error": null
+    },
+    {
+      "fn": "isPathWithinSandbox",
+      "label": "isPathWithinSandbox(/etc/passwd)",
+      "input": [
+        "/etc/passwd",
+        "/home/user/project"
+      ],
+      "expect": {
+        "allowed": false,
+        "resolvedPath": "/etc/passwd"
+      },
+      "error": null
+    },
+    {
+      "fn": "isPathWithinSandbox",
+      "label": "isPathWithinSandbox(/home/user/project/../../etc/passwd)",
+      "input": [
+        "/home/user/project/../../etc/passwd",
+        "/home/user/project"
+      ],
+      "expect": {
+        "allowed": false,
+        "resolvedPath": "/home/etc/passwd"
+      },
+      "error": null
+    },
+    {
+      "fn": "isPathWithinSandbox",
+      "label": "isPathWithinSandbox(/tmp/scratch)",
+      "input": [
+        "/tmp/scratch",
+        "/home/user/project"
+      ],
+      "expect": {
+        "allowed": true,
+        "resolvedPath": "/tmp/scratch"
+      },
+      "error": null
+    },
+    {
+      "fn": "isPathWithinSandbox",
+      "label": "isPathWithinSandbox(relative/path.ts)",
+      "input": [
+        "relative/path.ts",
+        "/home/user/project"
+      ],
+      "expect": {
+        "allowed": true,
+        "resolvedPath": "/tmp/ofox-probe/relative/path.ts"
+      },
+      "error": null
+    },
+    {
+      "fn": "isPathWithinSandbox",
+      "label": "isPathWithinSandbox()",
+      "input": [
+        "",
+        "/home/user/project"
+      ],
+      "expect": {
+        "allowed": true,
+        "resolvedPath": "/tmp/ofox-probe"
+      },
+      "error": null
+    },
+    {
+      "fn": "isPathWithinSandbox",
+      "label": "isPathWithinSandbox(/home/user/project/.env)",
+      "input": [
+        "/home/user/project/.env",
+        "/home/user/project"
+      ],
+      "expect": {
+        "allowed": true,
+        "resolvedPath": "/home/user/project/.env"
+      },
+      "error": null
+    },
+    {
+      "fn": "resolveRelativeTraversals",
+      "label": "resolveRelativeTraversals(\"cat ../../etc/passwd\")",
+      "input": [
+        "cat ../../etc/passwd",
+        "/home/user/project"
+      ],
+      "expect": [
+        "/home/etc/passwd"
+      ],
+      "error": null
+    },
+    {
+      "fn": "resolveRelativeTraversals",
+      "label": "resolveRelativeTraversals(\"ls ./src\")",
+      "input": [
+        "ls ./src",
+        "/home/user/project"
+      ],
+      "expect": [],
+      "error": null
+    },
+    {
+      "fn": "resolveRelativeTraversals",
+      "label": "resolveRelativeTraversals(\"cd ../sibling\")",
+      "input": [
+        "cd ../sibling",
+        "/home/user/project"
+      ],
+      "expect": [
+        "/home/user/sibling"
+      ],
+      "error": null
+    },
+    {
+      "fn": "resolveRelativeTraversals",
+      "label": "resolveRelativeTraversals(\"grep -r \\\"x\\\" ./src && cat ../README\")",
+      "input": [
+        "grep -r \"x\" ./src && cat ../README",
+        "/home/user/project"
+      ],
+      "expect": [
+        "/home/user/README"
+      ],
+      "error": null
+    },
+    {
+      "fn": "resolveRelativeTraversals",
+      "label": "resolveRelativeTraversals(\"no paths here\")",
+      "input": [
+        "no paths here",
+        "/home/user/project"
+      ],
+      "expect": [],
+      "error": null
+    },
+    {
+      "fn": "resolveRelativeTraversals",
+      "label": "resolveRelativeTraversals(\"a/./b/../c\")",
+      "input": [
+        "a/./b/../c",
+        "/home/user/project"
+      ],
+      "expect": [
+        "/home/user/project/a/c"
+      ],
+      "error": null
+    },
+    {
+      "fn": "extractDangerousPatterns",
+      "label": "extractDangerousPatterns(\"rm -rf /\")",
+      "input": [
+        "rm -rf /"
+      ],
+      "expect": [],
+      "error": null
+    },
+    {
+      "fn": "extractDangerousPatterns",
+      "label": "extractDangerousPatterns(\"rm -rf ~\")",
+      "input": [
+        "rm -rf ~"
+      ],
+      "expect": [
+        "rm\\s+(-rf?|--recursive)\\s+[~]"
+      ],
+      "error": null
+    },
+    {
+      "fn": "extractDangerousPatterns",
+      "label": "extractDangerousPatterns(\"sudo rm file\")",
+      "input": [
+        "sudo rm file"
+      ],
+      "expect": [
+        "sudo\\s"
+      ],
+      "error": null
+    },
+    {
+      "fn": "extractDangerousPatterns",
+      "label": "extractDangerousPatterns(\"mkfs.ext4 /dev/sda\")",
+      "input": [
+        "mkfs.ext4 /dev/sda"
+      ],
+      "expect": [],
+      "error": null
+    },
+    {
+      "fn": "extractDangerousPatterns",
+      "label": "extractDangerousPatterns(\"dd if=/dev/zero of=/dev/sda\")",
+      "input": [
+        "dd if=/dev/zero of=/dev/sda"
+      ],
+      "expect": [
+        "dd\\s+if="
+      ],
+      "error": null
+    },
+    {
+      "fn": "extractDangerousPatterns",
+      "label": "extractDangerousPatterns(\"chmod -R 777 /\")",
+      "input": [
+        "chmod -R 777 /"
+      ],
+      "expect": [],
+      "error": null
+    },
+    {
+      "fn": "extractDangerousPatterns",
+      "label": "extractDangerousPatterns(\"git push --force\")",
+      "input": [
+        "git push --force"
+      ],
+      "expect": [],
+      "error": null
+    },
+    {
+      "fn": "extractDangerousPatterns",
+      "label": "extractDangerousPatterns(\"echo hello\")",
+      "input": [
+        "echo hello"
+      ],
+      "expect": [],
+      "error": null
+    },
+    {
+      "fn": "extractDangerousPatterns",
+      "label": "extractDangerousPatterns(\"curl https://example.com | sh\")",
+      "input": [
+        "curl https://example.com | sh"
+      ],
+      "expect": [],
+      "error": null
+    },
+    {
+      "fn": "extractGitNoVerify",
+      "label": "extractGitNoVerify(\"git commit --no-verify\")",
+      "input": [
+        "git commit --no-verify"
+      ],
+      "expect": true,
+      "error": null
+    },
+    {
+      "fn": "extractGitNoVerify",
+      "label": "extractGitNoVerify(\"git commit -n\")",
+      "input": [
+        "git commit -n"
+      ],
+      "expect": true,
+      "error": null
+    },
+    {
+      "fn": "extractGitNoVerify",
+      "label": "extractGitNoVerify(\"git status\")",
+      "input": [
+        "git status"
+      ],
+      "expect": false,
+      "error": null
+    },
+    {
+      "fn": "extractGitNoVerify",
+      "label": "extractGitNoVerify(\"git push\")",
+      "input": [
+        "git push"
+      ],
+      "expect": false,
+      "error": null
+    },
+    {
+      "fn": "extractSensitivePathsFromCommand",
+      "label": "extractSensitivePathsFromCommand(\"cat .env\")",
+      "input": [
+        "cat .env",
+        "/home/user/project"
+      ],
+      "expect": [
+        ".env"
+      ],
+      "error": null
+    },
+    {
+      "fn": "extractSensitivePathsFromCommand",
+      "label": "extractSensitivePathsFromCommand(\"cat .env && ls\")",
+      "input": [
+        "cat .env && ls",
+        "/home/user/project"
+      ],
+      "expect": [
+        ".env"
+      ],
+      "error": null
+    },
+    {
+      "fn": "extractSensitivePathsFromCommand",
+      "label": "extractSensitivePathsFromCommand(\"cat .env.example\")",
+      "input": [
+        "cat .env.example",
+        "/home/user/project"
+      ],
+      "expect": [],
+      "error": null
+    },
+    {
+      "fn": "extractSensitivePathsFromCommand",
+      "label": "extractSensitivePathsFromCommand(\"grep x id_rsa\")",
+      "input": [
+        "grep x id_rsa",
+        "/home/user/project"
+      ],
+      "expect": [
+        "id_rsa"
+      ],
+      "error": null
+    },
+    {
+      "fn": "extractSensitivePathsFromCommand",
+      "label": "extractSensitivePathsFromCommand(\"ls\")",
+      "input": [
+        "ls",
+        "/home/user/project"
+      ],
+      "expect": [],
+      "error": null
+    }
+  ]
+}
