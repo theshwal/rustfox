@@ -1,0 +1,217 @@
+{
+  "description": "Line-ending and string-replacement semantics from src/server/tools/edit.ts. The private helpers were recovered verbatim from the source, type annotations stripped, and executed.",
+  "lineEndingCases": [
+    {
+      "fn": "lineEndings",
+      "name": "lf-only",
+      "input": "a\nb\nc",
+      "expect": {
+        "lineEnding": "lf",
+        "normalizedLF": "a\nb\nc"
+      }
+    },
+    {
+      "fn": "lineEndings",
+      "name": "crlf-only",
+      "input": "a\r\nb\r\nc",
+      "expect": {
+        "lineEnding": "crlf",
+        "normalizedLF": "a\nb\nc"
+      }
+    },
+    {
+      "fn": "lineEndings",
+      "name": "cr-only",
+      "input": "a\rb\rc",
+      "expect": {
+        "lineEnding": "cr",
+        "normalizedLF": "a\nb\nc"
+      }
+    },
+    {
+      "fn": "lineEndings",
+      "name": "mixed-crlf-lf",
+      "input": "a\r\nb\nc",
+      "expect": {
+        "lineEnding": "crlf",
+        "normalizedLF": "a\nb\nc"
+      }
+    },
+    {
+      "fn": "lineEndings",
+      "name": "mixed-crlf-cr",
+      "input": "a\r\nb\rc",
+      "expect": {
+        "lineEnding": "crlf",
+        "normalizedLF": "a\nb\nc"
+      }
+    },
+    {
+      "fn": "lineEndings",
+      "name": "no-newline",
+      "input": "abc",
+      "expect": {
+        "lineEnding": "lf",
+        "normalizedLF": "abc"
+      }
+    },
+    {
+      "fn": "lineEndings",
+      "name": "trailing-crlf",
+      "input": "a\r\n",
+      "expect": {
+        "lineEnding": "crlf",
+        "normalizedLF": "a\n"
+      }
+    },
+    {
+      "fn": "lineEndings",
+      "name": "trailing-lf",
+      "input": "a\n",
+      "expect": {
+        "lineEnding": "lf",
+        "normalizedLF": "a\n"
+      }
+    },
+    {
+      "fn": "lineEndings",
+      "name": "empty",
+      "input": "",
+      "expect": {
+        "lineEnding": "lf",
+        "normalizedLF": ""
+      }
+    },
+    {
+      "fn": "lineEndings",
+      "name": "only-crlf",
+      "input": "\r\n",
+      "expect": {
+        "lineEnding": "crlf",
+        "normalizedLF": "\n"
+      }
+    },
+    {
+      "fn": "lineEndings",
+      "name": "only-lf",
+      "input": "\n",
+      "expect": {
+        "lineEnding": "lf",
+        "normalizedLF": "\n"
+      }
+    },
+    {
+      "fn": "lineEndings",
+      "name": "only-cr",
+      "input": "\r",
+      "expect": {
+        "lineEnding": "cr",
+        "normalizedLF": "\n"
+      }
+    },
+    {
+      "fn": "lineEndings",
+      "name": "double-cr",
+      "input": "\r\r",
+      "expect": {
+        "lineEnding": "cr",
+        "normalizedLF": "\n\n"
+      }
+    },
+    {
+      "fn": "lineEndings",
+      "name": "crlf-then-lf",
+      "input": "a\r\n\nb",
+      "expect": {
+        "lineEnding": "crlf",
+        "normalizedLF": "a\n\nb"
+      }
+    }
+  ],
+  "replaceCases": [
+    {
+      "fn": "replace",
+      "name": "single-occurrence",
+      "input": {
+        "haystack": "a\nb\na\nb",
+        "needle": "a",
+        "replacement": "X",
+        "replaceAll": false
+      },
+      "expect": {
+        "count": 2,
+        "result": "X\nb\na\nb"
+      }
+    },
+    {
+      "fn": "replace",
+      "name": "two-occurrences-all",
+      "input": {
+        "haystack": "a\nb\na\nb",
+        "needle": "a",
+        "replacement": "X",
+        "replaceAll": true
+      },
+      "expect": {
+        "count": 2,
+        "result": "X\nb\nX\nb"
+      }
+    },
+    {
+      "fn": "replace",
+      "name": "absent",
+      "input": {
+        "haystack": "a\nb",
+        "needle": "zzz",
+        "replacement": "X",
+        "replaceAll": false
+      },
+      "expect": {
+        "count": 0,
+        "result": "a\nb"
+      }
+    },
+    {
+      "fn": "replace",
+      "name": "empty-needle",
+      "input": {
+        "haystack": "abc",
+        "needle": "",
+        "replacement": "X",
+        "replaceAll": false
+      },
+      "expect": {
+        "count": -1,
+        "result": "abc"
+      }
+    },
+    {
+      "fn": "replace",
+      "name": "multi-occurrence-block",
+      "input": {
+        "haystack": "x1y\nx2y\nx3y",
+        "needle": "x",
+        "replacement": "Q",
+        "replaceAll": true
+      },
+      "expect": {
+        "count": 3,
+        "result": "Q1y\nQ2y\nQ3y"
+      }
+    },
+    {
+      "fn": "replace",
+      "name": "whole-content",
+      "input": {
+        "haystack": "abc",
+        "needle": "abc",
+        "replacement": "Z",
+        "replaceAll": false
+      },
+      "expect": {
+        "count": 1,
+        "result": "Z"
+      }
+    }
+  ]
+}

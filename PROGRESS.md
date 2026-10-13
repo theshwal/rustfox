@@ -109,8 +109,36 @@ It agrees on every pinned fixture, and `KNOWN_GAPS` in `tests/encoding_rules.rs`
 is the place any future divergence must be recorded; the test fails if an entry
 becomes stale, so the list cannot rot into an excuse.
 
-Still missing in P2: `write`, `edit`, `shell`, `pty`, and the
-`PathAccessDeniedError` / confirmation flow that path-security drives.
+### edit (line endings and replacement)
+
+`src/editing.rs` implements `detectLineEnding`, `normalizeToLF` and the
+replacement semantics, pinned by `contract/edit-rules.json` and
+`tests/edit_rules.rs`.
+
+`detectLineEnding` and `normalizeToLF` are private in the original, so the
+fixtures were produced by recovering both function bodies verbatim from
+`edit.ts`, stripping the type annotations and executing them. The contract is
+therefore generated from the original's own code text, not from a
+re-implementation of it.
+
+What only the fixtures reveal:
+
+- **CRLF wins outright.** A document containing any `\r\n` is `crlf` even when
+  it also contains bare `\n` or bare `\r`, because the CRLF check runs first.
+  Mixed-ending files are silently normalised to CRLF on write.
+- A document with no newline at all, and an empty one, both report `lf`.
+- `\r\r` is `cr`, not a CRLF.
+- Replacement reports the occurrence count alongside the result, which is what
+  lets the tool reject an ambiguous edit.
+
+The port adds one deliberate difference: an empty needle returns an explicit
+`EmptyNeedle` rather than reproducing JavaScript's `String.replace('', x)`
+splice-at-every-position behaviour. The original guards against that before
+reaching the replacement, so the two paths never meet in practice; the port
+makes the refusal explicit instead of relying on an upstream guard.
+
+Still missing in P2: `write`, `edit` file I/O and diagnostics, `shell`, `pty`,
+and the `PathAccessDeniedError` / confirmation flow that path-security drives.
 
 ## Phases 3–6 — not started
 

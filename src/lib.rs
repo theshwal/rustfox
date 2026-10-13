@@ -1,4 +1,5 @@
 pub mod db;
+pub mod editing;
 pub mod encoding;
 pub mod iotools;
 pub mod pathsec;
