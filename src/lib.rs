@@ -1,3 +1,4 @@
+pub mod confirmation;
 pub mod db;
 pub mod editing;
 pub mod encoding;

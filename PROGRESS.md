@@ -185,8 +185,28 @@ What only the fixtures reveal:
   exempted in the test with the reason stated inline, because its verdict
   describes a path that does not exist on the machine running the test.
 
-Still missing in P2: `write`, `edit` file I/O and diagnostics, `shell`, `pty`,
-and the `PathAccessDeniedError` / confirmation flow itself.
+### path confirmation and the allowlist
+
+`src/confirmation.rs` implements the session allowlist, the pending-confirmation
+registry and `PathAccessDeniedError`. Pinned by `contract/confirmation.json`
+(11 allowlist scenarios, 5 denial reasons) and `tests/confirmation.rs`.
+
+What only the fixtures reveal:
+
+- the allowlist normalises on **both** insertion and lookup, so `/etc/./passwd`
+  and `/etc/shadow/../passwd` both match an entry for `/etc/passwd`
+- a **trailing slash does not match**: Node's `path.normalize` preserves
+  `/etc/passwd/` as-is, so an entry for `/etc/passwd` does not cover it. This
+  looked cosmetic and is not: the contract fixture caught the port dropping the
+  trailing separator, which would have widened every allowlist entry. The fix
+  went into `pathsec::normalize`, with a unit test pinning both behaviours.
+- `dangerous_command` has **no branch** in the message ternary chain, so it falls
+  through to the `outside_workdir` wording even though the reason is recorded on
+  the error. A caller reading only the message is told the wrong thing.
+- a custom message replaces the generated one entirely: neither the reason
+  phrase nor the path list survives, while `error.reason` still holds the truth.
+
+Still missing in P2: `write`, `edit` file I/O and diagnostics, `shell`, `pty`.
 
 ## Phases 3–6 — not started
 

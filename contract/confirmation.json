@@ -1,0 +1,321 @@
+{
+  "description": "Session allowlist and denial-message behaviour captured from src/server/tools/path-security.ts. The allowlist normalises on both add and check, which is what makes trailing slashes and dot segments match.",
+  "allowlist": [
+    {
+      "name": "empty-allowlist",
+      "add": [],
+      "check": [
+        "/etc/passwd"
+      ],
+      "beforeClear": [
+        {
+          "path": "/etc/passwd",
+          "allowed": false
+        }
+      ],
+      "afterClear": [
+        {
+          "path": "/etc/passwd",
+          "allowed": false
+        }
+      ]
+    },
+    {
+      "name": "exact-match",
+      "add": [
+        "/etc/passwd"
+      ],
+      "check": [
+        "/etc/passwd"
+      ],
+      "beforeClear": [
+        {
+          "path": "/etc/passwd",
+          "allowed": true
+        }
+      ],
+      "afterClear": [
+        {
+          "path": "/etc/passwd",
+          "allowed": true
+        }
+      ]
+    },
+    {
+      "name": "other-path",
+      "add": [
+        "/etc/passwd"
+      ],
+      "check": [
+        "/etc/shadow"
+      ],
+      "beforeClear": [
+        {
+          "path": "/etc/shadow",
+          "allowed": false
+        }
+      ],
+      "afterClear": [
+        {
+          "path": "/etc/shadow",
+          "allowed": false
+        }
+      ]
+    },
+    {
+      "name": "trailing-slash",
+      "add": [
+        "/etc/passwd"
+      ],
+      "check": [
+        "/etc/passwd/"
+      ],
+      "beforeClear": [
+        {
+          "path": "/etc/passwd/",
+          "allowed": false
+        }
+      ],
+      "afterClear": [
+        {
+          "path": "/etc/passwd/",
+          "allowed": false
+        }
+      ]
+    },
+    {
+      "name": "dot-segment",
+      "add": [
+        "/etc/passwd"
+      ],
+      "check": [
+        "/etc/./passwd"
+      ],
+      "beforeClear": [
+        {
+          "path": "/etc/./passwd",
+          "allowed": true
+        }
+      ],
+      "afterClear": [
+        {
+          "path": "/etc/./passwd",
+          "allowed": true
+        }
+      ]
+    },
+    {
+      "name": "dotdot-normalised",
+      "add": [
+        "/etc/passwd"
+      ],
+      "check": [
+        "/etc/shadow/../passwd"
+      ],
+      "beforeClear": [
+        {
+          "path": "/etc/shadow/../passwd",
+          "allowed": true
+        }
+      ],
+      "afterClear": [
+        {
+          "path": "/etc/shadow/../passwd",
+          "allowed": true
+        }
+      ]
+    },
+    {
+      "name": "relative-add",
+      "add": [
+        "relative/file.txt"
+      ],
+      "check": [
+        "relative/file.txt"
+      ],
+      "beforeClear": [
+        {
+          "path": "relative/file.txt",
+          "allowed": true
+        }
+      ],
+      "afterClear": [
+        {
+          "path": "relative/file.txt",
+          "allowed": true
+        }
+      ]
+    },
+    {
+      "name": "multiple-adds",
+      "add": [
+        "/a",
+        "/b",
+        "/c"
+      ],
+      "check": [
+        "/a",
+        "/b",
+        "/c",
+        "/d"
+      ],
+      "beforeClear": [
+        {
+          "path": "/a",
+          "allowed": true
+        },
+        {
+          "path": "/b",
+          "allowed": true
+        },
+        {
+          "path": "/c",
+          "allowed": true
+        },
+        {
+          "path": "/d",
+          "allowed": false
+        }
+      ],
+      "afterClear": [
+        {
+          "path": "/a",
+          "allowed": true
+        },
+        {
+          "path": "/b",
+          "allowed": true
+        },
+        {
+          "path": "/c",
+          "allowed": true
+        },
+        {
+          "path": "/d",
+          "allowed": false
+        }
+      ]
+    },
+    {
+      "name": "duplicate-add",
+      "add": [
+        "/a",
+        "/a",
+        "/a"
+      ],
+      "check": [
+        "/a"
+      ],
+      "beforeClear": [
+        {
+          "path": "/a",
+          "allowed": true
+        }
+      ],
+      "afterClear": [
+        {
+          "path": "/a",
+          "allowed": true
+        }
+      ]
+    },
+    {
+      "name": "cleared",
+      "add": [
+        "/etc/passwd"
+      ],
+      "check": [
+        "/etc/passwd"
+      ],
+      "beforeClear": [
+        {
+          "path": "/etc/passwd",
+          "allowed": true
+        }
+      ],
+      "afterClear": [
+        {
+          "path": "/etc/passwd",
+          "allowed": false
+        }
+      ]
+    },
+    {
+      "name": "unknown-session",
+      "add": [],
+      "check": [
+        "/anything"
+      ],
+      "beforeClear": [
+        {
+          "path": "/anything",
+          "allowed": false
+        }
+      ],
+      "afterClear": [
+        {
+          "path": "/anything",
+          "allowed": false
+        }
+      ]
+    }
+  ],
+  "denialMessages": [
+    {
+      "reason": "outside_workdir",
+      "paths": [
+        "/etc/passwd",
+        "/root/.env"
+      ],
+      "customMessage": null,
+      "message": "User denied access to paths outside workdir: /etc/passwd, /root/.env",
+      "name": "PathAccessDeniedError"
+    },
+    {
+      "reason": "sensitive_file",
+      "paths": [
+        "/etc/passwd",
+        "/root/.env"
+      ],
+      "customMessage": null,
+      "message": "User denied access to sensitive files (may contain secrets): /etc/passwd, /root/.env",
+      "name": "PathAccessDeniedError"
+    },
+    {
+      "reason": "both",
+      "paths": [
+        "/etc/passwd",
+        "/root/.env"
+      ],
+      "customMessage": null,
+      "message": "User denied access to paths outside workdir and sensitive files: /etc/passwd, /root/.env",
+      "name": "PathAccessDeniedError"
+    },
+    {
+      "reason": "dangerous_command",
+      "paths": [
+        "/etc/passwd",
+        "/root/.env"
+      ],
+      "customMessage": null,
+      "message": "User denied access to paths outside workdir: /etc/passwd, /root/.env",
+      "name": "PathAccessDeniedError"
+    },
+    {
+      "reason": "git_no_verify",
+      "paths": [
+        "/etc/passwd",
+        "/root/.env"
+      ],
+      "customMessage": null,
+      "message": "User denied access to git commands with --no-verify: /etc/passwd, /root/.env",
+      "name": "PathAccessDeniedError"
+    }
+  ],
+  "customMessages": {
+    "withCustom": "my own message",
+    "withCustomAndDefaultReason": "just this"
+  },
+  "cancelUnknown": false,
+  "cancelSessionEmpty": 0
+}

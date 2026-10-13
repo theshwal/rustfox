@@ -88,11 +88,19 @@ fn is_allowed_root(path: &str) -> bool {
 
 /// Lexical normalisation matching Node's `path.normalize`: resolve `.` and `..`
 /// textually, collapsing separators, without touching the filesystem.
+///
+/// A trailing separator is **preserved**, which is what Node does:
+/// `normalize('/etc/passwd/')` stays `'/etc/passwd/'` while
+/// `normalize('/etc/./passwd')` becomes `'/etc/passwd'`. That asymmetry is not
+/// cosmetic: the session allowlist normalises on both add and lookup, so the
+/// difference decides whether `/etc/passwd/` matches an entry for `/etc/passwd`.
+/// The contract fixtures caught this.
 pub fn normalize(path: &str) -> String {
     if path.is_empty() {
         return ".".to_string();
     }
     let absolute = path.starts_with('/');
+    let had_trailing = path.len() > 1 && path.ends_with('/');
     let mut out: Vec<&str> = Vec::new();
     for seg in path.split('/') {
         match seg {
@@ -113,7 +121,11 @@ pub fn normalize(path: &str) -> String {
     }
     let joined = out.join("/");
     if absolute {
-        format!("/{joined}")
+        let mut s = format!("/{joined}");
+        if had_trailing && !s.ends_with('/') {
+            s.push('/');
+        }
+        s
     } else if joined.is_empty() {
         ".".to_string()
     } else {
@@ -612,6 +624,17 @@ pub fn normalize_path(p: &Path) -> PathBuf {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn normalize_keeps_a_trailing_separator_like_node_does() {
+        // Node preserves it; the session allowlist depends on that distinction.
+        assert_eq!(normalize("/etc/passwd"), "/etc/passwd");
+        assert_eq!(normalize("/etc/passwd/"), "/etc/passwd/");
+        assert_eq!(normalize("/etc/./passwd"), "/etc/passwd");
+        assert_eq!(normalize("/etc/shadow/../passwd"), "/etc/passwd");
+        // A path that is only a separator collapses to the root.
+        assert_eq!(normalize("/"), "/");
+    }
 
     #[test]
     fn sensitive_patterns_match_the_original() {
