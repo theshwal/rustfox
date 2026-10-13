@@ -7,6 +7,7 @@ pub mod filetrack;
 pub mod iotools;
 pub mod pathaccess;
 pub mod pathsec;
+pub mod procs;
 pub mod routes;
 pub mod session;
 pub mod shellrules;

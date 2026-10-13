@@ -1,0 +1,250 @@
+{
+  "description": "Background-process store rules captured from src/server/tools/background-process/store.ts. The cap counts only processes whose status is not \"exited\"; log offsets are dense and pagination derives nextOffset from the last returned line.",
+  "rules": {
+    "maxPerSession": 5,
+    "capScenarios": [
+      {
+        "exitedFirst": 0,
+        "created": 5,
+        "liveCount": 5,
+        "totalCount": 5
+      },
+      {
+        "exitedFirst": 2,
+        "created": 7,
+        "liveCount": 5,
+        "totalCount": 7
+      },
+      {
+        "exitedFirst": 5,
+        "created": 8,
+        "liveCount": 3,
+        "totalCount": 8
+      },
+      {
+        "exitedFirst": 6,
+        "created": 8,
+        "liveCount": 2,
+        "totalCount": 8
+      },
+      {
+        "exitedFirst": 8,
+        "created": 8,
+        "liveCount": 0,
+        "totalCount": 8
+      }
+    ],
+    "getLogs": [
+      {
+        "offset": 0,
+        "limit": null,
+        "count": 10,
+        "first": "line 0",
+        "last": "line 9"
+      },
+      {
+        "offset": 0,
+        "limit": 3,
+        "count": 3,
+        "first": "line 0",
+        "last": "line 2"
+      },
+      {
+        "offset": 2,
+        "limit": 3,
+        "count": 3,
+        "first": "line 2",
+        "last": "line 4"
+      },
+      {
+        "offset": 5,
+        "limit": 100,
+        "count": 5,
+        "first": "line 5",
+        "last": "line 9"
+      },
+      {
+        "offset": 100,
+        "limit": 3,
+        "count": 0,
+        "first": null,
+        "last": null
+      },
+      {
+        "offset": 10,
+        "limit": 5,
+        "count": 0,
+        "first": null,
+        "last": null
+      },
+      {
+        "offset": -5,
+        "limit": 3,
+        "count": 3,
+        "first": "line 5",
+        "last": "line 7"
+      },
+      {
+        "offset": 3,
+        "limit": 0,
+        "count": 0,
+        "first": null,
+        "last": null
+      }
+    ],
+    "paginated": [
+      {
+        "since": 0,
+        "maxLines": 500,
+        "count": 10,
+        "totalLines": 10,
+        "nextOffset": 10,
+        "hasMore": false,
+        "first": "line 0",
+        "last": "line 9"
+      },
+      {
+        "since": 0,
+        "maxLines": 3,
+        "count": 3,
+        "totalLines": 10,
+        "nextOffset": 3,
+        "hasMore": true,
+        "first": "line 0",
+        "last": "line 2"
+      },
+      {
+        "since": 0,
+        "maxLines": 10,
+        "count": 10,
+        "totalLines": 10,
+        "nextOffset": 10,
+        "hasMore": false,
+        "first": "line 0",
+        "last": "line 9"
+      },
+      {
+        "since": 0,
+        "maxLines": 20,
+        "count": 10,
+        "totalLines": 10,
+        "nextOffset": 10,
+        "hasMore": false,
+        "first": "line 0",
+        "last": "line 9"
+      },
+      {
+        "since": 3,
+        "maxLines": 4,
+        "count": 4,
+        "totalLines": 10,
+        "nextOffset": 7,
+        "hasMore": true,
+        "first": "line 3",
+        "last": "line 6"
+      },
+      {
+        "since": 10,
+        "maxLines": 5,
+        "count": 0,
+        "totalLines": 10,
+        "nextOffset": 10,
+        "hasMore": false,
+        "first": null,
+        "last": null
+      },
+      {
+        "since": 100,
+        "maxLines": 5,
+        "count": 0,
+        "totalLines": 10,
+        "nextOffset": 10,
+        "hasMore": false,
+        "first": null,
+        "last": null
+      },
+      {
+        "since": 0,
+        "maxLines": 0,
+        "count": 0,
+        "totalLines": 10,
+        "nextOffset": 10,
+        "hasMore": true,
+        "first": null,
+        "last": null
+      },
+      {
+        "since": 5,
+        "maxLines": 0,
+        "count": 0,
+        "totalLines": 10,
+        "nextOffset": 10,
+        "hasMore": true,
+        "first": null,
+        "last": null
+      }
+    ],
+    "offsetCheck": [
+      {
+        "offset": 0,
+        "stream": "stdout"
+      },
+      {
+        "offset": 1,
+        "stream": "stdout"
+      },
+      {
+        "offset": 2,
+        "stream": "stderr"
+      },
+      {
+        "offset": 3,
+        "stream": "stdout"
+      },
+      {
+        "offset": 4,
+        "stream": "stdout"
+      },
+      {
+        "offset": 5,
+        "stream": "stderr"
+      },
+      {
+        "offset": 6,
+        "stream": "stdout"
+      },
+      {
+        "offset": 7,
+        "stream": "stdout"
+      },
+      {
+        "offset": 8,
+        "stream": "stderr"
+      },
+      {
+        "offset": 9,
+        "stream": "stdout"
+      }
+    ],
+    "afterClear": {
+      "total": 0,
+      "nextOffset": 0,
+      "hasMore": false
+    },
+    "unknownProcess": {
+      "getLogs": 0,
+      "paginated": {
+        "lines": [],
+        "totalLines": 0,
+        "nextOffset": 0,
+        "hasMore": false
+      },
+      "getProcess": null
+    },
+    "crossSession": {
+      "rightSession": true,
+      "wrongSession": null,
+      "foundById": true
+    }
+  }
+}

@@ -234,8 +234,37 @@ What the fixtures reveal about the original:
 - names are normalised before dispatch, so `utf8`, `ascii` and `UTF-8` share a
   branch and `UTF-16` resolves to UTF-16LE
 
-Still missing in P2: `pty`, and the file I/O that write and edit perform around
-these encoders.
+### background processes
+
+`src/procs.rs` implements the background-process store: the per-session cap,
+lifecycle transitions, log buffering and pagination. Pinned by
+`contract/process-rules.json` and `tests/process_rules.rs`.
+
+What only the fixtures reveal:
+
+- **the cap counts live processes, not stored ones.** `MAX_PER_SESSION` is 5,
+  yet a session can hold 8 entries once some have exited: the full listing is 8
+  while the live count is 3. A caller that decides the session is full by
+  counting entries rather than live ones refuses work it should allow.
+- **a zero-length page still advances the cursor.** `maxLines = 0` returns no
+  lines with `nextOffset = totalLines` and `hasMore = true`, so a caller looping
+  on `hasMore` stops after one iteration.
+- log offsets are dense and shared across streams, so offset 2 in the fixtures
+  is a stderr line.
+- `get_logs` follows JavaScript's `slice`, not a clamp: offset `-5` with limit 3
+  returns the three lines ending five from the tail. My first implementation
+  clamped at zero and returned nothing; the contract caught it.
+- processes are keyed by `(processId, sessionId)`, so the same id in another
+  session is invisible even though `getProcessById` finds it.
+
+### P2 coverage
+
+Ported and pinned against the original's behaviour: `path-security`,
+`checkPathsAccess`, the confirmation allowlist, `file-tracker`, `encoding`
+detection, `encodeContent`, the shell helpers, and the background-process store.
+
+Not ported: the actual process spawning, since that is `node-pty` bound to a
+live terminal rather than a rule that can be pinned to fixtures.
 
 ## Phases 3–6 — not started
 
