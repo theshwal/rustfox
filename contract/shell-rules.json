@@ -1,0 +1,399 @@
+{
+  "description": "Pure helpers from src/server/tools/shell.ts, captured by calling the original. detectGitMutation refuses to strip quotes, which is what stops `git \"checkout\"` from bypassing detection; hasBackgroundAmpersand strips quotes and the operator forms that merely contain &.",
+  "gitCases": [
+    {
+      "fn": "detectGitMutation",
+      "input": "git checkout main",
+      "expect": "git checkout"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git checkout -b feature",
+      "expect": "git checkout"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git checkout 'main'",
+      "expect": "git checkout"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git switch main",
+      "expect": "git switch"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git branch -d old",
+      "expect": "git branch -d"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git branch --delete old",
+      "expect": "git branch --delete"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git branch -D old",
+      "expect": "git branch -D"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git branch -M name",
+      "expect": "git branch -M"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git merge develop",
+      "expect": "git merge"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git rebase main",
+      "expect": "git rebase"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git reset --hard",
+      "expect": "git reset"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git cherry-pick abc123",
+      "expect": "git cherry-pick"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git worktree add ../wt",
+      "expect": "git worktree"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git clone https://example.com/r.git",
+      "expect": "git clone"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git pull",
+      "expect": "git pull"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git push origin main",
+      "expect": "git push"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git fetch",
+      "expect": "git fetch"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git update-ref refs/heads/x",
+      "expect": "git update-ref"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git symbolic-ref HEAD refs/heads/main",
+      "expect": "git symbolic-ref"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git status",
+      "expect": null
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git log",
+      "expect": null
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git commit -m \"x\"",
+      "expect": null
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git add .",
+      "expect": null
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git diff",
+      "expect": null
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git \"checkout\" main",
+      "expect": "git \"checkout"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git 'switch' main",
+      "expect": "git 'switch"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "echo checkout main",
+      "expect": null
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "sudo git pull",
+      "expect": "git pull"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "mygit checkout main",
+      "expect": null
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git-checkout main",
+      "expect": null
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "cat file | grep checkout",
+      "expect": null
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git  checkout  main",
+      "expect": "git  checkout"
+    },
+    {
+      "fn": "detectGitMutation",
+      "input": "git\ncheckout\nmain",
+      "expect": "git\ncheckout"
+    }
+  ],
+  "durationCases": [
+    {
+      "fn": "formatDuration",
+      "input": 0,
+      "expect": "0ms"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 1,
+      "expect": "1ms"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 999,
+      "expect": "999ms"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 1000,
+      "expect": "1.0s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 1001,
+      "expect": "1.0s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 1500,
+      "expect": "1.5s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 9999,
+      "expect": "10.0s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 10000,
+      "expect": "10.0s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 59999,
+      "expect": "60.0s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 60000,
+      "expect": "1m 0s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 60001,
+      "expect": "1m 0s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 60500,
+      "expect": "1m 1s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 61000,
+      "expect": "1m 1s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 90000,
+      "expect": "1m 30s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 119999,
+      "expect": "2m 0s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 120000,
+      "expect": "2m 0s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 125000,
+      "expect": "2m 5s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 599999,
+      "expect": "10m 0s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 600000,
+      "expect": "10m 0s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 3599000,
+      "expect": "59m 59s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 3600000,
+      "expect": "60m 0s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 86399000,
+      "expect": "1439m 59s"
+    },
+    {
+      "fn": "formatDuration",
+      "input": -1,
+      "expect": "-1ms"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 1.5,
+      "expect": "1.5ms"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 999.4,
+      "expect": "999.4ms"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 999.5,
+      "expect": "999.5ms"
+    },
+    {
+      "fn": "formatDuration",
+      "input": 1059.9,
+      "expect": "1.1s"
+    }
+  ],
+  "ampCases": [
+    {
+      "fn": "hasBackgroundAmpersand",
+      "input": "sleep 10 &",
+      "expect": true
+    },
+    {
+      "fn": "hasBackgroundAmpersand",
+      "input": "sleep 10 & wait",
+      "expect": true
+    },
+    {
+      "fn": "hasBackgroundAmpersand",
+      "input": "echo \"a & b\"",
+      "expect": false
+    },
+    {
+      "fn": "hasBackgroundAmpersand",
+      "input": "echo 'a & b'",
+      "expect": false
+    },
+    {
+      "fn": "hasBackgroundAmpersand",
+      "input": "echo \\& not-background",
+      "expect": false
+    },
+    {
+      "fn": "hasBackgroundAmpersand",
+      "input": "cmd1 && cmd2",
+      "expect": false
+    },
+    {
+      "fn": "hasBackgroundAmpersand",
+      "input": "cmd 2>&1",
+      "expect": false
+    },
+    {
+      "fn": "hasBackgroundAmpersand",
+      "input": "cmd &> file",
+      "expect": false
+    },
+    {
+      "fn": "hasBackgroundAmpersand",
+      "input": "cmd |& other",
+      "expect": false
+    },
+    {
+      "fn": "hasBackgroundAmpersand",
+      "input": "cmd >&2",
+      "expect": false
+    },
+    {
+      "fn": "hasBackgroundAmpersand",
+      "input": "a & b & c",
+      "expect": true
+    },
+    {
+      "fn": "hasBackgroundAmpersand",
+      "input": "no ampersand",
+      "expect": false
+    },
+    {
+      "fn": "hasBackgroundAmpersand",
+      "input": "",
+      "expect": false
+    },
+    {
+      "fn": "hasBackgroundAmpersand",
+      "input": "&",
+      "expect": true
+    },
+    {
+      "fn": "hasBackgroundAmpersand",
+      "input": "&&",
+      "expect": false
+    },
+    {
+      "fn": "hasBackgroundAmpersand",
+      "input": "echo \"quote with && inside\"",
+      "expect": false
+    },
+    {
+      "fn": "hasBackgroundAmpersand",
+      "input": "echo 'quote with |& inside'",
+      "expect": false
+    },
+    {
+      "fn": "hasBackgroundAmpersand",
+      "input": "echo done\\&",
+      "expect": false
+    }
+  ]
+}

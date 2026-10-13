@@ -8,6 +8,7 @@ pub mod pathaccess;
 pub mod pathsec;
 pub mod routes;
 pub mod session;
+pub mod shellrules;
 pub mod write;
 pub mod ws;
 
