@@ -1,6 +1,7 @@
 pub mod db;
 pub mod editing;
 pub mod encoding;
+pub mod filetrack;
 pub mod iotools;
 pub mod pathsec;
 pub mod routes;

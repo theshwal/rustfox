@@ -137,6 +137,30 @@ splice-at-every-position behaviour. The original guards against that before
 reaching the replacement, so the two paths never meet in practice; the port
 makes the refusal explicit instead of relying on an upstream guard.
 
+### file-tracker (read-before-write)
+
+`src/filetrack.rs` implements `computeFileHash` and `validateFileForWrite`,
+which is the guard that stops the agent overwriting a file it never saw or that
+changed under it. Covered by `tests/file_tracker.rs` (9 cases).
+
+The rules are subtler than "was it read":
+
+- a file that does not exist yet may be created without being read
+- a file that exists must have been read **at its current hash**, otherwise it
+  is `FileChangedExternallyError` rather than `FileNotReadError`
+- with a `baseDir`, an identical hash recorded under the same repo-relative path
+  from a different workspace also satisfies the check, so switching workspaces
+  does not force a re-read
+- but that fallback is skipped when the path escapes the base directory: two
+  unrelated directories can both yield the string `../config.json`
+
+`computeFileHash` swallows only ENOENT. Any other filesystem error is
+propagated, so a permission problem is never mistaken for a missing file.
+
+The SHA-256 implementation is self-contained rather than a crate dependency,
+so it can be read next to the original's `createHash('sha256')`; it is checked
+against the NIST vectors including the 448-bit message.
+
 Still missing in P2: `write`, `edit` file I/O and diagnostics, `shell`, `pty`,
 and the `PathAccessDeniedError` / confirmation flow that path-security drives.
 
