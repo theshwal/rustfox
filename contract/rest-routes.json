@@ -1,0 +1,838 @@
+[
+  {
+    "method": "GET",
+    "path": "/"
+  },
+  {
+    "method": "GET",
+    "path": "/*path"
+  },
+  {
+    "method": "GET",
+    "path": "/api/agents"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agents"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/agents/:id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/agents/:id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/agents/:id"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agents/:id/duplicate"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/agents/:id/model"
+  },
+  {
+    "method": "GET",
+    "path": "/api/agents/:id/model"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/agents/:id/model"
+  },
+  {
+    "method": "GET",
+    "path": "/api/agents/default-ids"
+  },
+  {
+    "method": "GET",
+    "path": "/api/agents/defaults/:id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/auth"
+  },
+  {
+    "method": "POST",
+    "path": "/api/auth/login"
+  },
+  {
+    "method": "POST",
+    "path": "/api/auto-update"
+  },
+  {
+    "method": "GET",
+    "path": "/api/auto-update/check"
+  },
+  {
+    "method": "POST",
+    "path": "/api/auto-update/restart"
+  },
+  {
+    "method": "GET",
+    "path": "/api/branch"
+  },
+  {
+    "method": "GET",
+    "path": "/api/changelog"
+  },
+  {
+    "method": "GET",
+    "path": "/api/commands"
+  },
+  {
+    "method": "POST",
+    "path": "/api/commands"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/commands/:id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/commands/:id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/commands/:id"
+  },
+  {
+    "method": "POST",
+    "path": "/api/commands/:id/duplicate"
+  },
+  {
+    "method": "GET",
+    "path": "/api/commands/default-ids"
+  },
+  {
+    "method": "GET",
+    "path": "/api/commands/defaults/:id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/config"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/config/vision-fallback"
+  },
+  {
+    "method": "POST",
+    "path": "/api/config/vision-fallback/test"
+  },
+  {
+    "method": "POST",
+    "path": "/api/default-model"
+  },
+  {
+    "method": "GET",
+    "path": "/api/dev-server"
+  },
+  {
+    "method": "POST",
+    "path": "/api/dev-server/clear-logs"
+  },
+  {
+    "method": "GET",
+    "path": "/api/dev-server/config"
+  },
+  {
+    "method": "POST",
+    "path": "/api/dev-server/config"
+  },
+  {
+    "method": "POST",
+    "path": "/api/dev-server/insert-marker"
+  },
+  {
+    "method": "GET",
+    "path": "/api/dev-server/logs"
+  },
+  {
+    "method": "POST",
+    "path": "/api/dev-server/restart"
+  },
+  {
+    "method": "POST",
+    "path": "/api/dev-server/start"
+  },
+  {
+    "method": "POST",
+    "path": "/api/dev-server/stop"
+  },
+  {
+    "method": "GET",
+    "path": "/api/files"
+  },
+  {
+    "method": "GET",
+    "path": "/api/health"
+  },
+  {
+    "method": "POST",
+    "path": "/api/init/config"
+  },
+  {
+    "method": "GET",
+    "path": "/api/mcp/oauth/callback"
+  },
+  {
+    "method": "GET",
+    "path": "/api/mcp/servers"
+  },
+  {
+    "method": "POST",
+    "path": "/api/mcp/servers"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/mcp/servers/:name"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/mcp/servers/:name"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/mcp/servers/:name/oauth"
+  },
+  {
+    "method": "POST",
+    "path": "/api/mcp/servers/:name/oauth/complete"
+  },
+  {
+    "method": "POST",
+    "path": "/api/mcp/servers/:name/oauth/start"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/mcp/servers/:name/tools/:toolName"
+  },
+  {
+    "method": "POST",
+    "path": "/api/mcp/servers/test"
+  },
+  {
+    "method": "POST",
+    "path": "/api/model/refresh"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/notifications"
+  },
+  {
+    "method": "GET",
+    "path": "/api/notifications"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/notifications/:id"
+  },
+  {
+    "method": "POST",
+    "path": "/api/notifications/read"
+  },
+  {
+    "method": "GET",
+    "path": "/api/plugins"
+  },
+  {
+    "method": "GET",
+    "path": "/api/plugins/:id/assets/*assetPath"
+  },
+  {
+    "method": "POST",
+    "path": "/api/plugins/:id/disable"
+  },
+  {
+    "method": "POST",
+    "path": "/api/plugins/:id/enable"
+  },
+  {
+    "method": "GET",
+    "path": "/api/plugins/:id/open-folder"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/plugins/:id/proxy"
+  },
+  {
+    "method": "GET",
+    "path": "/api/plugins/:id/proxy"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/plugins/:id/proxy"
+  },
+  {
+    "method": "POST",
+    "path": "/api/plugins/:id/proxy"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/plugins/:id/proxy"
+  },
+  {
+    "method": "POST",
+    "path": "/api/plugins/:id/reinstall"
+  },
+  {
+    "method": "POST",
+    "path": "/api/plugins/:id/rpc/:method"
+  },
+  {
+    "method": "GET",
+    "path": "/api/plugins/:id/settings"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/plugins/:id/settings"
+  },
+  {
+    "method": "POST",
+    "path": "/api/plugins/:id/uninstall"
+  },
+  {
+    "method": "POST",
+    "path": "/api/plugins/check-updates"
+  },
+  {
+    "method": "GET",
+    "path": "/api/plugins/diagnostics"
+  },
+  {
+    "method": "POST",
+    "path": "/api/plugins/install"
+  },
+  {
+    "method": "GET",
+    "path": "/api/plugins/list"
+  },
+  {
+    "method": "GET",
+    "path": "/api/plugins/open-folder"
+  },
+  {
+    "method": "GET",
+    "path": "/api/plugins/registry"
+  },
+  {
+    "method": "GET",
+    "path": "/api/plugins/tools"
+  },
+  {
+    "method": "GET",
+    "path": "/api/plugins/ui"
+  },
+  {
+    "method": "GET",
+    "path": "/api/projects"
+  },
+  {
+    "method": "POST",
+    "path": "/api/projects"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/projects/:id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/projects/:id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/projects/:id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/projects/:id/branches"
+  },
+  {
+    "method": "POST",
+    "path": "/api/projects/:id/checkout"
+  },
+  {
+    "method": "POST",
+    "path": "/api/projects/:id/checkout-new"
+  },
+  {
+    "method": "GET",
+    "path": "/api/projects/:id/open-folder"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/projects/:id/star"
+  },
+  {
+    "method": "GET",
+    "path": "/api/projects/:id/workspaces"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/projects/:projectId/sessions"
+  },
+  {
+    "method": "GET",
+    "path": "/api/projects/:projectId/tasks"
+  },
+  {
+    "method": "POST",
+    "path": "/api/projects/:projectId/tasks"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/projects/:projectId/tasks/:taskId"
+  },
+  {
+    "method": "GET",
+    "path": "/api/projects/:projectId/tasks/:taskId"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/projects/:projectId/tasks/:taskId"
+  },
+  {
+    "method": "POST",
+    "path": "/api/projects/:projectId/tasks/:taskId/duplicate"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/projects/:projectId/tasks/:taskId/gate-values/:gateId"
+  },
+  {
+    "method": "POST",
+    "path": "/api/projects/:projectId/tasks/:taskId/move"
+  },
+  {
+    "method": "POST",
+    "path": "/api/projects/:projectId/tasks/:taskId/reorder"
+  },
+  {
+    "method": "GET",
+    "path": "/api/projects/:projectId/tasks/count"
+  },
+  {
+    "method": "GET",
+    "path": "/api/projects/:projectId/tasks/gates"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/projects/:projectId/tasks/gates"
+  },
+  {
+    "method": "GET",
+    "path": "/api/projects/:projectId/tasks/settings"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/projects/:projectId/tasks/settings"
+  },
+  {
+    "method": "POST",
+    "path": "/api/projects/check-permissions"
+  },
+  {
+    "method": "POST",
+    "path": "/api/projects/fix-permissions"
+  },
+  {
+    "method": "GET",
+    "path": "/api/provider-adapters"
+  },
+  {
+    "method": "POST",
+    "path": "/api/provider-auth/:providerId/login"
+  },
+  {
+    "method": "POST",
+    "path": "/api/provider-auth/:providerId/logout"
+  },
+  {
+    "method": "GET",
+    "path": "/api/provider-auth/:providerId/status"
+  },
+  {
+    "method": "GET",
+    "path": "/api/provider-presets"
+  },
+  {
+    "method": "GET",
+    "path": "/api/providers"
+  },
+  {
+    "method": "POST",
+    "path": "/api/providers"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/providers/:id"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/providers/:id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/providers/:id"
+  },
+  {
+    "method": "POST",
+    "path": "/api/providers/:id/activate"
+  },
+  {
+    "method": "GET",
+    "path": "/api/providers/:id/models"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/providers/:id/models/:modelId/settings"
+  },
+  {
+    "method": "POST",
+    "path": "/api/providers/:id/refresh"
+  },
+  {
+    "method": "POST",
+    "path": "/api/providers/auto-config"
+  },
+  {
+    "method": "GET",
+    "path": "/api/providers/models"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/providers/order"
+  },
+  {
+    "method": "POST",
+    "path": "/api/providers/test"
+  },
+  {
+    "method": "POST",
+    "path": "/api/providers/test-params"
+  },
+  {
+    "method": "POST",
+    "path": "/api/proxy/test"
+  },
+  {
+    "method": "POST",
+    "path": "/api/search/test"
+  },
+  {
+    "method": "GET",
+    "path": "/api/sessions"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/sessions/:id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/sessions/:id"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/answer"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/background-process/:processId/stop"
+  },
+  {
+    "method": "GET",
+    "path": "/api/sessions/:id/background-processes"
+  },
+  {
+    "method": "GET",
+    "path": "/api/sessions/:id/branches"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/chat"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/checkout"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/checkout-new"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/confirm-path"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/continue"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/sessions/:id/criteria"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/sessions/:id/danger-level"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/delete-workspace"
+  },
+  {
+    "method": "GET",
+    "path": "/api/sessions/:id/export"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/sessions/:id/favorite"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/fork"
+  },
+  {
+    "method": "GET",
+    "path": "/api/sessions/:id/mcp/overrides"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/sessions/:id/mcp/overrides"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/message"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/sessions/:id/metadata/:key"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/sessions/:id/mode"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/sessions/:id/night-mode"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/pause"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/sessions/:id/pin-effort"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/pin-effort"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/sessions/:id/provider"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/provider"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/sessions/:id/queue/:queueId"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/replay"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/resume"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/sessions/:id/review-findings"
+  },
+  {
+    "method": "GET",
+    "path": "/api/sessions/:id/stats"
+  },
+  {
+    "method": "GET",
+    "path": "/api/sessions/:id/status"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/stop"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/switch-workspace"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/sessions/:id/title"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/truncate"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/:id/warmup"
+  },
+  {
+    "method": "GET",
+    "path": "/api/sessions/home"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sessions/import"
+  },
+  {
+    "method": "GET",
+    "path": "/api/settings"
+  },
+  {
+    "method": "GET",
+    "path": "/api/settings/:key"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/settings/:key"
+  },
+  {
+    "method": "GET",
+    "path": "/api/skills"
+  },
+  {
+    "method": "POST",
+    "path": "/api/skills"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/skills/:id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/skills/:id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/skills/:id"
+  },
+  {
+    "method": "POST",
+    "path": "/api/skills/:id/duplicate"
+  },
+  {
+    "method": "POST",
+    "path": "/api/skills/:id/toggle"
+  },
+  {
+    "method": "GET",
+    "path": "/api/skills/default-ids"
+  },
+  {
+    "method": "GET",
+    "path": "/api/skills/defaults/:id"
+  },
+  {
+    "method": "POST",
+    "path": "/api/skills/install"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/skills/library"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/skills/library"
+  },
+  {
+    "method": "GET",
+    "path": "/api/terminals"
+  },
+  {
+    "method": "POST",
+    "path": "/api/terminals"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/terminals/:id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/terminals/:id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/tools"
+  },
+  {
+    "method": "GET",
+    "path": "/api/tools/shells"
+  },
+  {
+    "method": "GET",
+    "path": "/api/workflows"
+  },
+  {
+    "method": "POST",
+    "path": "/api/workflows"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/workflows/:id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/workflows/:id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/workflows/:id"
+  },
+  {
+    "method": "POST",
+    "path": "/api/workflows/:id/duplicate"
+  },
+  {
+    "method": "GET",
+    "path": "/api/workflows/default-ids"
+  },
+  {
+    "method": "GET",
+    "path": "/api/workflows/defaults/:id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/workflows/template-variables"
+  },
+  {
+    "method": "GET",
+    "path": "/api/workspace/config"
+  },
+  {
+    "method": "POST",
+    "path": "/api/workspace/config"
+  },
+  {
+    "method": "POST",
+    "path": "/api/workspace/config/validate"
+  },
+  {
+    "method": "GET",
+    "path": "/fox.svg"
+  },
+  {
+    "method": "GET",
+    "path": "/src/styles/*path"
+  }
+]

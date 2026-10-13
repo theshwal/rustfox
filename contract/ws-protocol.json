@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "openfox websocket protocol",
+  "description": "Inbound message vocabulary extracted from co-l/openfox develop by driving a live server. classification: deprecated = server must answer DEPRECATED_MESSAGE_TYPE; invalid_payload = answer INVALID_PAYLOAD for the empty payload sent; accepted = routed for processing.",
+  "transport": {
+    "path": "/ws",
+    "protocol": "ws",
+    "envelope": {
+      "id": "string",
+      "type": "string",
+      "payload": "object"
+    }
+  },
+  "inbound": [
+    {
+      "type": "ask.answer",
+      "classification": "accepted",
+      "code": "NO_SESSION",
+      "responseType": "error"
+    },
+    {
+      "type": "chat.retry",
+      "classification": "accepted",
+      "code": "NO_SESSION",
+      "responseType": "error"
+    },
+    {
+      "type": "context.applyDynamic",
+      "classification": "accepted",
+      "code": "NO_SESSION",
+      "responseType": "error"
+    },
+    {
+      "type": "context.applyDynamic.preview",
+      "classification": "accepted",
+      "code": "NO_SESSION",
+      "responseType": "error"
+    },
+    {
+      "type": "context.checkDynamic",
+      "classification": "accepted",
+      "code": "NO_SESSION",
+      "responseType": "error"
+    },
+    {
+      "type": "context.compact",
+      "classification": "accepted",
+      "code": "NO_SESSION",
+      "responseType": "error"
+    },
+    {
+      "type": "path.confirm",
+      "classification": "deprecated",
+      "code": "DEPRECATED",
+      "responseType": "error"
+    },
+    {
+      "type": "project.create",
+      "classification": "deprecated",
+      "code": "DEPRECATED_MESSAGE_TYPE",
+      "responseType": "error"
+    },
+    {
+      "type": "project.delete",
+      "classification": "deprecated",
+      "code": "DEPRECATED_MESSAGE_TYPE",
+      "responseType": "error"
+    },
+    {
+      "type": "project.list",
+      "classification": "deprecated",
+      "code": "DEPRECATED_MESSAGE_TYPE",
+      "responseType": "error"
+    },
+    {
+      "type": "project.load",
+      "classification": "deprecated",
+      "code": "DEPRECATED_MESSAGE_TYPE",
+      "responseType": "error"
+    },
+    {
+      "type": "project.update",
+      "classification": "deprecated",
+      "code": "DEPRECATED_MESSAGE_TYPE",
+      "responseType": "error"
+    },
+    {
+      "type": "runner.launch",
+      "classification": "accepted",
+      "code": "NO_SESSION",
+      "responseType": "error"
+    },
+    {
+      "type": "session.create",
+      "classification": "deprecated",
+      "code": "DEPRECATED_MESSAGE_TYPE",
+      "responseType": "error"
+    },
+    {
+      "type": "session.delete",
+      "classification": "deprecated",
+      "code": "DEPRECATED_MESSAGE_TYPE",
+      "responseType": "error"
+    },
+    {
+      "type": "session.deleteAll",
+      "classification": "deprecated",
+      "code": "DEPRECATED_MESSAGE_TYPE",
+      "responseType": "error"
+    },
+    {
+      "type": "session.list",
+      "classification": "deprecated",
+      "code": "DEPRECATED_MESSAGE_TYPE",
+      "responseType": "error"
+    },
+    {
+      "type": "session.load",
+      "classification": "invalid_payload",
+      "code": "INVALID_PAYLOAD",
+      "responseType": "error"
+    },
+    {
+      "type": "session.setProvider",
+      "classification": "deprecated",
+      "code": "DEPRECATED_MESSAGE_TYPE",
+      "responseType": "error"
+    },
+    {
+      "type": "settings.get",
+      "classification": "deprecated",
+      "code": "DEPRECATED_MESSAGE_TYPE",
+      "responseType": "error"
+    },
+    {
+      "type": "settings.set",
+      "classification": "deprecated",
+      "code": "DEPRECATED_MESSAGE_TYPE",
+      "responseType": "error"
+    },
+    {
+      "type": "workflow.exit",
+      "classification": "accepted",
+      "code": "NO_SESSION",
+      "responseType": "error"
+    }
+  ],
+  "vocabularySize": 22
+}
