@@ -2,6 +2,7 @@ pub mod confirmation;
 pub mod db;
 pub mod editing;
 pub mod encoding;
+pub mod encoding_io;
 pub mod filetrack;
 pub mod iotools;
 pub mod pathaccess;

@@ -1,0 +1,2384 @@
+{
+  "description": "encodeContent behaviour and the JSON Schemas the tools expose to the model. Encoding names are normalised first, so utf8/ascii/UTF-16 all route to a canonical target before dispatch.",
+  "encodeCases": [
+    {
+      "encoding": "utf-8",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "utf-8",
+      "text": "",
+      "addBom": true,
+      "expect": "77u/",
+      "error": null
+    },
+    {
+      "encoding": "utf-8",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "utf-8",
+      "text": "plain",
+      "addBom": true,
+      "expect": "77u/cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "utf-8",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aMOpbGxv",
+      "error": null
+    },
+    {
+      "encoding": "utf-8",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "77u/aMOpbGxv",
+      "error": null
+    },
+    {
+      "encoding": "utf-8",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "5pel5pys6Kqe",
+      "error": null
+    },
+    {
+      "encoding": "utf-8",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "77u/5pel5pys6Kqe",
+      "error": null
+    },
+    {
+      "encoding": "utf-8",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YfCfjoli",
+      "error": null
+    },
+    {
+      "encoding": "utf-8",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "77u/YfCfjoli",
+      "error": null
+    },
+    {
+      "encoding": "utf-8",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "utf-8",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "77u/bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "utf-8",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "utf-8",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "77u/dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "UTF-8",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "UTF-8",
+      "text": "",
+      "addBom": true,
+      "expect": "77u/",
+      "error": null
+    },
+    {
+      "encoding": "UTF-8",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "UTF-8",
+      "text": "plain",
+      "addBom": true,
+      "expect": "77u/cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "UTF-8",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aMOpbGxv",
+      "error": null
+    },
+    {
+      "encoding": "UTF-8",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "77u/aMOpbGxv",
+      "error": null
+    },
+    {
+      "encoding": "UTF-8",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "5pel5pys6Kqe",
+      "error": null
+    },
+    {
+      "encoding": "UTF-8",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "77u/5pel5pys6Kqe",
+      "error": null
+    },
+    {
+      "encoding": "UTF-8",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YfCfjoli",
+      "error": null
+    },
+    {
+      "encoding": "UTF-8",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "77u/YfCfjoli",
+      "error": null
+    },
+    {
+      "encoding": "UTF-8",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "UTF-8",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "77u/bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "UTF-8",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "UTF-8",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "77u/dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "utf8",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "utf8",
+      "text": "",
+      "addBom": true,
+      "expect": "77u/",
+      "error": null
+    },
+    {
+      "encoding": "utf8",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "utf8",
+      "text": "plain",
+      "addBom": true,
+      "expect": "77u/cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "utf8",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aMOpbGxv",
+      "error": null
+    },
+    {
+      "encoding": "utf8",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "77u/aMOpbGxv",
+      "error": null
+    },
+    {
+      "encoding": "utf8",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "5pel5pys6Kqe",
+      "error": null
+    },
+    {
+      "encoding": "utf8",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "77u/5pel5pys6Kqe",
+      "error": null
+    },
+    {
+      "encoding": "utf8",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YfCfjoli",
+      "error": null
+    },
+    {
+      "encoding": "utf8",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "77u/YfCfjoli",
+      "error": null
+    },
+    {
+      "encoding": "utf8",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "utf8",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "77u/bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "utf8",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "utf8",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "77u/dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "ascii",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "ascii",
+      "text": "",
+      "addBom": true,
+      "expect": "77u/",
+      "error": null
+    },
+    {
+      "encoding": "ascii",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "ascii",
+      "text": "plain",
+      "addBom": true,
+      "expect": "77u/cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "ascii",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aMOpbGxv",
+      "error": null
+    },
+    {
+      "encoding": "ascii",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "77u/aMOpbGxv",
+      "error": null
+    },
+    {
+      "encoding": "ascii",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "5pel5pys6Kqe",
+      "error": null
+    },
+    {
+      "encoding": "ascii",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "77u/5pel5pys6Kqe",
+      "error": null
+    },
+    {
+      "encoding": "ascii",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YfCfjoli",
+      "error": null
+    },
+    {
+      "encoding": "ascii",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "77u/YfCfjoli",
+      "error": null
+    },
+    {
+      "encoding": "ascii",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "ascii",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "77u/bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "ascii",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "ascii",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "77u/dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "utf-16le",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "utf-16le",
+      "text": "",
+      "addBom": true,
+      "expect": "//4=",
+      "error": null
+    },
+    {
+      "encoding": "utf-16le",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cABsAGEAaQBuAA==",
+      "error": null
+    },
+    {
+      "encoding": "utf-16le",
+      "text": "plain",
+      "addBom": true,
+      "expect": "//5wAGwAYQBpAG4A",
+      "error": null
+    },
+    {
+      "encoding": "utf-16le",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aADpAGwAbABvAA==",
+      "error": null
+    },
+    {
+      "encoding": "utf-16le",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "//5oAOkAbABsAG8A",
+      "error": null
+    },
+    {
+      "encoding": "utf-16le",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "5WUsZ56K",
+      "error": null
+    },
+    {
+      "encoding": "utf-16le",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "//7lZSxnnoo=",
+      "error": null
+    },
+    {
+      "encoding": "utf-16le",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YQA82InfYgA=",
+      "error": null
+    },
+    {
+      "encoding": "utf-16le",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "//5hADzYid9iAA==",
+      "error": null
+    },
+    {
+      "encoding": "utf-16le",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bABpAG4AZQAKAGIAcgBlAGEAawA=",
+      "error": null
+    },
+    {
+      "encoding": "utf-16le",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "//5sAGkAbgBlAAoAYgByAGUAYQBrAA==",
+      "error": null
+    },
+    {
+      "encoding": "utf-16le",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dABhAGIACQBoAGUAcgBlAA==",
+      "error": null
+    },
+    {
+      "encoding": "utf-16le",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "//50AGEAYgAJAGgAZQByAGUA",
+      "error": null
+    },
+    {
+      "encoding": "UTF-16",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "UTF-16",
+      "text": "",
+      "addBom": true,
+      "expect": "//4=",
+      "error": null
+    },
+    {
+      "encoding": "UTF-16",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cABsAGEAaQBuAA==",
+      "error": null
+    },
+    {
+      "encoding": "UTF-16",
+      "text": "plain",
+      "addBom": true,
+      "expect": "//5wAGwAYQBpAG4A",
+      "error": null
+    },
+    {
+      "encoding": "UTF-16",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aADpAGwAbABvAA==",
+      "error": null
+    },
+    {
+      "encoding": "UTF-16",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "//5oAOkAbABsAG8A",
+      "error": null
+    },
+    {
+      "encoding": "UTF-16",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "5WUsZ56K",
+      "error": null
+    },
+    {
+      "encoding": "UTF-16",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "//7lZSxnnoo=",
+      "error": null
+    },
+    {
+      "encoding": "UTF-16",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YQA82InfYgA=",
+      "error": null
+    },
+    {
+      "encoding": "UTF-16",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "//5hADzYid9iAA==",
+      "error": null
+    },
+    {
+      "encoding": "UTF-16",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bABpAG4AZQAKAGIAcgBlAGEAawA=",
+      "error": null
+    },
+    {
+      "encoding": "UTF-16",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "//5sAGkAbgBlAAoAYgByAGUAYQBrAA==",
+      "error": null
+    },
+    {
+      "encoding": "UTF-16",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dABhAGIACQBoAGUAcgBlAA==",
+      "error": null
+    },
+    {
+      "encoding": "UTF-16",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "//50AGEAYgAJAGgAZQByAGUA",
+      "error": null
+    },
+    {
+      "encoding": "utf-16be",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "utf-16be",
+      "text": "",
+      "addBom": true,
+      "expect": "/v8=",
+      "error": null
+    },
+    {
+      "encoding": "utf-16be",
+      "text": "plain",
+      "addBom": false,
+      "expect": "AHAAbABhAGkAbg==",
+      "error": null
+    },
+    {
+      "encoding": "utf-16be",
+      "text": "plain",
+      "addBom": true,
+      "expect": "/v8AcABsAGEAaQBu",
+      "error": null
+    },
+    {
+      "encoding": "utf-16be",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "AGgA6QBsAGwAbw==",
+      "error": null
+    },
+    {
+      "encoding": "utf-16be",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "/v8AaADpAGwAbABv",
+      "error": null
+    },
+    {
+      "encoding": "utf-16be",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "ZeVnLIqe",
+      "error": null
+    },
+    {
+      "encoding": "utf-16be",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "/v9l5Wcsip4=",
+      "error": null
+    },
+    {
+      "encoding": "utf-16be",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "AGHYPN+JAGI=",
+      "error": null
+    },
+    {
+      "encoding": "utf-16be",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "/v8AYdg834kAYg==",
+      "error": null
+    },
+    {
+      "encoding": "utf-16be",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "AGwAaQBuAGUACgBiAHIAZQBhAGs=",
+      "error": null
+    },
+    {
+      "encoding": "utf-16be",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "/v8AbABpAG4AZQAKAGIAcgBlAGEAaw==",
+      "error": null
+    },
+    {
+      "encoding": "utf-16be",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "AHQAYQBiAAkAaABlAHIAZQ==",
+      "error": null
+    },
+    {
+      "encoding": "utf-16be",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "/v8AdABhAGIACQBoAGUAcgBl",
+      "error": null
+    },
+    {
+      "encoding": "utf-32le",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "utf-32le",
+      "text": "",
+      "addBom": true,
+      "expect": "//4AAA==",
+      "error": null
+    },
+    {
+      "encoding": "utf-32le",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cAAAAGwAAABhAAAAaQAAAG4AAAA=",
+      "error": null
+    },
+    {
+      "encoding": "utf-32le",
+      "text": "plain",
+      "addBom": true,
+      "expect": "//4AAHAAAABsAAAAYQAAAGkAAABuAAAA",
+      "error": null
+    },
+    {
+      "encoding": "utf-32le",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aAAAAOkAAABsAAAAbAAAAG8AAAA=",
+      "error": null
+    },
+    {
+      "encoding": "utf-32le",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "//4AAGgAAADpAAAAbAAAAGwAAABvAAAA",
+      "error": null
+    },
+    {
+      "encoding": "utf-32le",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "5WUAACxnAACeigAA",
+      "error": null
+    },
+    {
+      "encoding": "utf-32le",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "//4AAOVlAAAsZwAAnooAAA==",
+      "error": null
+    },
+    {
+      "encoding": "utf-32le",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YQAAAInzAQBiAAAA",
+      "error": null
+    },
+    {
+      "encoding": "utf-32le",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "//4AAGEAAACJ8wEAYgAAAA==",
+      "error": null
+    },
+    {
+      "encoding": "utf-32le",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bAAAAGkAAABuAAAAZQAAAAoAAABiAAAAcgAAAGUAAABhAAAAawAAAA==",
+      "error": null
+    },
+    {
+      "encoding": "utf-32le",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "//4AAGwAAABpAAAAbgAAAGUAAAAKAAAAYgAAAHIAAABlAAAAYQAAAGsAAAA=",
+      "error": null
+    },
+    {
+      "encoding": "utf-32le",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dAAAAGEAAABiAAAACQAAAGgAAABlAAAAcgAAAGUAAAA=",
+      "error": null
+    },
+    {
+      "encoding": "utf-32le",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "//4AAHQAAABhAAAAYgAAAAkAAABoAAAAZQAAAHIAAABlAAAA",
+      "error": null
+    },
+    {
+      "encoding": "utf-32",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "utf-32",
+      "text": "",
+      "addBom": true,
+      "expect": "//4AAA==",
+      "error": null
+    },
+    {
+      "encoding": "utf-32",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cAAAAGwAAABhAAAAaQAAAG4AAAA=",
+      "error": null
+    },
+    {
+      "encoding": "utf-32",
+      "text": "plain",
+      "addBom": true,
+      "expect": "//4AAHAAAABsAAAAYQAAAGkAAABuAAAA",
+      "error": null
+    },
+    {
+      "encoding": "utf-32",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aAAAAOkAAABsAAAAbAAAAG8AAAA=",
+      "error": null
+    },
+    {
+      "encoding": "utf-32",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "//4AAGgAAADpAAAAbAAAAGwAAABvAAAA",
+      "error": null
+    },
+    {
+      "encoding": "utf-32",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "5WUAACxnAACeigAA",
+      "error": null
+    },
+    {
+      "encoding": "utf-32",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "//4AAOVlAAAsZwAAnooAAA==",
+      "error": null
+    },
+    {
+      "encoding": "utf-32",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YQAAAInzAQBiAAAA",
+      "error": null
+    },
+    {
+      "encoding": "utf-32",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "//4AAGEAAACJ8wEAYgAAAA==",
+      "error": null
+    },
+    {
+      "encoding": "utf-32",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bAAAAGkAAABuAAAAZQAAAAoAAABiAAAAcgAAAGUAAABhAAAAawAAAA==",
+      "error": null
+    },
+    {
+      "encoding": "utf-32",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "//4AAGwAAABpAAAAbgAAAGUAAAAKAAAAYgAAAHIAAABlAAAAYQAAAGsAAAA=",
+      "error": null
+    },
+    {
+      "encoding": "utf-32",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dAAAAGEAAABiAAAACQAAAGgAAABlAAAAcgAAAGUAAAA=",
+      "error": null
+    },
+    {
+      "encoding": "utf-32",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "//4AAHQAAABhAAAAYgAAAAkAAABoAAAAZQAAAHIAAABlAAAA",
+      "error": null
+    },
+    {
+      "encoding": "utf-32be",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "utf-32be",
+      "text": "",
+      "addBom": true,
+      "expect": "AAD+/w==",
+      "error": null
+    },
+    {
+      "encoding": "utf-32be",
+      "text": "plain",
+      "addBom": false,
+      "expect": "AAAAcAAAAGwAAABhAAAAaQAAAG4=",
+      "error": null
+    },
+    {
+      "encoding": "utf-32be",
+      "text": "plain",
+      "addBom": true,
+      "expect": "AAD+/wAAAHAAAABsAAAAYQAAAGkAAABu",
+      "error": null
+    },
+    {
+      "encoding": "utf-32be",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "AAAAaAAAAOkAAABsAAAAbAAAAG8=",
+      "error": null
+    },
+    {
+      "encoding": "utf-32be",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "AAD+/wAAAGgAAADpAAAAbAAAAGwAAABv",
+      "error": null
+    },
+    {
+      "encoding": "utf-32be",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "AABl5QAAZywAAIqe",
+      "error": null
+    },
+    {
+      "encoding": "utf-32be",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "AAD+/wAAZeUAAGcsAACKng==",
+      "error": null
+    },
+    {
+      "encoding": "utf-32be",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "AAAAYQAB84kAAABi",
+      "error": null
+    },
+    {
+      "encoding": "utf-32be",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "AAD+/wAAAGEAAfOJAAAAYg==",
+      "error": null
+    },
+    {
+      "encoding": "utf-32be",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "AAAAbAAAAGkAAABuAAAAZQAAAAoAAABiAAAAcgAAAGUAAABhAAAAaw==",
+      "error": null
+    },
+    {
+      "encoding": "utf-32be",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "AAD+/wAAAGwAAABpAAAAbgAAAGUAAAAKAAAAYgAAAHIAAABlAAAAYQAAAGs=",
+      "error": null
+    },
+    {
+      "encoding": "utf-32be",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "AAAAdAAAAGEAAABiAAAACQAAAGgAAABlAAAAcgAAAGU=",
+      "error": null
+    },
+    {
+      "encoding": "utf-32be",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "AAD+/wAAAHQAAABhAAAAYgAAAAkAAABoAAAAZQAAAHIAAABl",
+      "error": null
+    },
+    {
+      "encoding": "ISO-8859-1",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "ISO-8859-1",
+      "text": "",
+      "addBom": true,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "ISO-8859-1",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "ISO-8859-1",
+      "text": "plain",
+      "addBom": true,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "ISO-8859-1",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aOlsbG8=",
+      "error": null
+    },
+    {
+      "encoding": "ISO-8859-1",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "aOlsbG8=",
+      "error": null
+    },
+    {
+      "encoding": "ISO-8859-1",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "Pz8/",
+      "error": null
+    },
+    {
+      "encoding": "ISO-8859-1",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "Pz8/",
+      "error": null
+    },
+    {
+      "encoding": "ISO-8859-1",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YT8/Yg==",
+      "error": null
+    },
+    {
+      "encoding": "ISO-8859-1",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "YT8/Yg==",
+      "error": null
+    },
+    {
+      "encoding": "ISO-8859-1",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "ISO-8859-1",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "ISO-8859-1",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "ISO-8859-1",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "latin1",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "latin1",
+      "text": "",
+      "addBom": true,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "latin1",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "latin1",
+      "text": "plain",
+      "addBom": true,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "latin1",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aOlsbG8=",
+      "error": null
+    },
+    {
+      "encoding": "latin1",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "aOlsbG8=",
+      "error": null
+    },
+    {
+      "encoding": "latin1",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "Pz8/",
+      "error": null
+    },
+    {
+      "encoding": "latin1",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "Pz8/",
+      "error": null
+    },
+    {
+      "encoding": "latin1",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YT8/Yg==",
+      "error": null
+    },
+    {
+      "encoding": "latin1",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "YT8/Yg==",
+      "error": null
+    },
+    {
+      "encoding": "latin1",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "latin1",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "latin1",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "latin1",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "windows-1252",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "windows-1252",
+      "text": "",
+      "addBom": true,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "windows-1252",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "windows-1252",
+      "text": "plain",
+      "addBom": true,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "windows-1252",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aOlsbG8=",
+      "error": null
+    },
+    {
+      "encoding": "windows-1252",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "aOlsbG8=",
+      "error": null
+    },
+    {
+      "encoding": "windows-1252",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "Pz8/",
+      "error": null
+    },
+    {
+      "encoding": "windows-1252",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "Pz8/",
+      "error": null
+    },
+    {
+      "encoding": "windows-1252",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YT8/Yg==",
+      "error": null
+    },
+    {
+      "encoding": "windows-1252",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "YT8/Yg==",
+      "error": null
+    },
+    {
+      "encoding": "windows-1252",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "windows-1252",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "windows-1252",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "windows-1252",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "Shift_JIS",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "Shift_JIS",
+      "text": "",
+      "addBom": true,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "Shift_JIS",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "Shift_JIS",
+      "text": "plain",
+      "addBom": true,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "Shift_JIS",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aD9sbG8=",
+      "error": null
+    },
+    {
+      "encoding": "Shift_JIS",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "aD9sbG8=",
+      "error": null
+    },
+    {
+      "encoding": "Shift_JIS",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "k/qWe4zq",
+      "error": null
+    },
+    {
+      "encoding": "Shift_JIS",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "k/qWe4zq",
+      "error": null
+    },
+    {
+      "encoding": "Shift_JIS",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YT9i",
+      "error": null
+    },
+    {
+      "encoding": "Shift_JIS",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "YT9i",
+      "error": null
+    },
+    {
+      "encoding": "Shift_JIS",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "Shift_JIS",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "Shift_JIS",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "Shift_JIS",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "EUC-JP",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "EUC-JP",
+      "text": "",
+      "addBom": true,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "EUC-JP",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "EUC-JP",
+      "text": "plain",
+      "addBom": true,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "EUC-JP",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aI+rsWxsbw==",
+      "error": null
+    },
+    {
+      "encoding": "EUC-JP",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "aI+rsWxsbw==",
+      "error": null
+    },
+    {
+      "encoding": "EUC-JP",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "xvzL3Ljs",
+      "error": null
+    },
+    {
+      "encoding": "EUC-JP",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "xvzL3Ljs",
+      "error": null
+    },
+    {
+      "encoding": "EUC-JP",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YT9i",
+      "error": null
+    },
+    {
+      "encoding": "EUC-JP",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "YT9i",
+      "error": null
+    },
+    {
+      "encoding": "EUC-JP",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "EUC-JP",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "EUC-JP",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "EUC-JP",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "EUC-KR",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "EUC-KR",
+      "text": "",
+      "addBom": true,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "EUC-KR",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "EUC-KR",
+      "text": "plain",
+      "addBom": true,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "EUC-KR",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aD9sbG8=",
+      "error": null
+    },
+    {
+      "encoding": "EUC-KR",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "aD9sbG8=",
+      "error": null
+    },
+    {
+      "encoding": "EUC-KR",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "7O3c4uXe",
+      "error": null
+    },
+    {
+      "encoding": "EUC-KR",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "7O3c4uXe",
+      "error": null
+    },
+    {
+      "encoding": "EUC-KR",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YT9i",
+      "error": null
+    },
+    {
+      "encoding": "EUC-KR",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "YT9i",
+      "error": null
+    },
+    {
+      "encoding": "EUC-KR",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "EUC-KR",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "EUC-KR",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "EUC-KR",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "GB2312",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "GB2312",
+      "text": "",
+      "addBom": true,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "GB2312",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "GB2312",
+      "text": "plain",
+      "addBom": true,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "GB2312",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aKimbGxv",
+      "error": null
+    },
+    {
+      "encoding": "GB2312",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "aKimbGxv",
+      "error": null
+    },
+    {
+      "encoding": "GB2312",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "yNWxvtVa",
+      "error": null
+    },
+    {
+      "encoding": "GB2312",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "yNWxvtVa",
+      "error": null
+    },
+    {
+      "encoding": "GB2312",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YT9i",
+      "error": null
+    },
+    {
+      "encoding": "GB2312",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "YT9i",
+      "error": null
+    },
+    {
+      "encoding": "GB2312",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "GB2312",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "GB2312",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "GB2312",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "GB18030",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "GB18030",
+      "text": "",
+      "addBom": true,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "GB18030",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "GB18030",
+      "text": "plain",
+      "addBom": true,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "GB18030",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aKimbGxv",
+      "error": null
+    },
+    {
+      "encoding": "GB18030",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "aKimbGxv",
+      "error": null
+    },
+    {
+      "encoding": "GB18030",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "yNWxvtVa",
+      "error": null
+    },
+    {
+      "encoding": "GB18030",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "yNWxvtVa",
+      "error": null
+    },
+    {
+      "encoding": "GB18030",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YZQ5vTVi",
+      "error": null
+    },
+    {
+      "encoding": "GB18030",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "YZQ5vTVi",
+      "error": null
+    },
+    {
+      "encoding": "GB18030",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "GB18030",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "GB18030",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "GB18030",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "Big5",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "Big5",
+      "text": "",
+      "addBom": true,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "Big5",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "Big5",
+      "text": "plain",
+      "addBom": true,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "Big5",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aIhtbGxv",
+      "error": null
+    },
+    {
+      "encoding": "Big5",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "aIhtbGxv",
+      "error": null
+    },
+    {
+      "encoding": "Big5",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "pOmlu7t5",
+      "error": null
+    },
+    {
+      "encoding": "Big5",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "pOmlu7t5",
+      "error": null
+    },
+    {
+      "encoding": "Big5",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YT9i",
+      "error": null
+    },
+    {
+      "encoding": "Big5",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "YT9i",
+      "error": null
+    },
+    {
+      "encoding": "Big5",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "Big5",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "Big5",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "Big5",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-R",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-R",
+      "text": "",
+      "addBom": true,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-R",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-R",
+      "text": "plain",
+      "addBom": true,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-R",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aD9sbG8=",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-R",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "aD9sbG8=",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-R",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "Pz8/",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-R",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "Pz8/",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-R",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YT8/Yg==",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-R",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "YT8/Yg==",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-R",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-R",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-R",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-R",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-U",
+      "text": "",
+      "addBom": false,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-U",
+      "text": "",
+      "addBom": true,
+      "expect": "",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-U",
+      "text": "plain",
+      "addBom": false,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-U",
+      "text": "plain",
+      "addBom": true,
+      "expect": "cGxhaW4=",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-U",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "aD9sbG8=",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-U",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "aD9sbG8=",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-U",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "Pz8/",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-U",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "Pz8/",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-U",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "YT8/Yg==",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-U",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "YT8/Yg==",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-U",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-U",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "bGluZQpicmVhaw==",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-U",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "KOI8-U",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "dGFiCWhlcmU=",
+      "error": null
+    },
+    {
+      "encoding": "unknown-encoding",
+      "text": "",
+      "addBom": false,
+      "expect": "threw",
+      "error": "Error: Encoding not recognized: 'unknown-encoding' (searched as: 'unknownencoding')"
+    },
+    {
+      "encoding": "unknown-encoding",
+      "text": "",
+      "addBom": true,
+      "expect": "threw",
+      "error": "Error: Encoding not recognized: 'unknown-encoding' (searched as: 'unknownencoding')"
+    },
+    {
+      "encoding": "unknown-encoding",
+      "text": "plain",
+      "addBom": false,
+      "expect": "threw",
+      "error": "Error: Encoding not recognized: 'unknown-encoding' (searched as: 'unknownencoding')"
+    },
+    {
+      "encoding": "unknown-encoding",
+      "text": "plain",
+      "addBom": true,
+      "expect": "threw",
+      "error": "Error: Encoding not recognized: 'unknown-encoding' (searched as: 'unknownencoding')"
+    },
+    {
+      "encoding": "unknown-encoding",
+      "text": "héllo",
+      "addBom": false,
+      "expect": "threw",
+      "error": "Error: Encoding not recognized: 'unknown-encoding' (searched as: 'unknownencoding')"
+    },
+    {
+      "encoding": "unknown-encoding",
+      "text": "héllo",
+      "addBom": true,
+      "expect": "threw",
+      "error": "Error: Encoding not recognized: 'unknown-encoding' (searched as: 'unknownencoding')"
+    },
+    {
+      "encoding": "unknown-encoding",
+      "text": "日本語",
+      "addBom": false,
+      "expect": "threw",
+      "error": "Error: Encoding not recognized: 'unknown-encoding' (searched as: 'unknownencoding')"
+    },
+    {
+      "encoding": "unknown-encoding",
+      "text": "日本語",
+      "addBom": true,
+      "expect": "threw",
+      "error": "Error: Encoding not recognized: 'unknown-encoding' (searched as: 'unknownencoding')"
+    },
+    {
+      "encoding": "unknown-encoding",
+      "text": "a🎉b",
+      "addBom": false,
+      "expect": "threw",
+      "error": "Error: Encoding not recognized: 'unknown-encoding' (searched as: 'unknownencoding')"
+    },
+    {
+      "encoding": "unknown-encoding",
+      "text": "a🎉b",
+      "addBom": true,
+      "expect": "threw",
+      "error": "Error: Encoding not recognized: 'unknown-encoding' (searched as: 'unknownencoding')"
+    },
+    {
+      "encoding": "unknown-encoding",
+      "text": "line\nbreak",
+      "addBom": false,
+      "expect": "threw",
+      "error": "Error: Encoding not recognized: 'unknown-encoding' (searched as: 'unknownencoding')"
+    },
+    {
+      "encoding": "unknown-encoding",
+      "text": "line\nbreak",
+      "addBom": true,
+      "expect": "threw",
+      "error": "Error: Encoding not recognized: 'unknown-encoding' (searched as: 'unknownencoding')"
+    },
+    {
+      "encoding": "unknown-encoding",
+      "text": "tab\there",
+      "addBom": false,
+      "expect": "threw",
+      "error": "Error: Encoding not recognized: 'unknown-encoding' (searched as: 'unknownencoding')"
+    },
+    {
+      "encoding": "unknown-encoding",
+      "text": "tab\there",
+      "addBom": true,
+      "expect": "threw",
+      "error": "Error: Encoding not recognized: 'unknown-encoding' (searched as: 'unknownencoding')"
+    }
+  ],
+  "roundTrips": [
+    {
+      "encoding": "utf-8",
+      "text": "",
+      "expect": ""
+    },
+    {
+      "encoding": "utf-8",
+      "text": "plain",
+      "expect": "plain"
+    },
+    {
+      "encoding": "utf-8",
+      "text": "héllo",
+      "expect": "héllo"
+    },
+    {
+      "encoding": "utf-8",
+      "text": "a🎉b",
+      "expect": "a🎉b"
+    },
+    {
+      "encoding": "utf-16le",
+      "text": "",
+      "expect": ""
+    },
+    {
+      "encoding": "utf-16le",
+      "text": "plain",
+      "expect": "plain"
+    },
+    {
+      "encoding": "utf-16le",
+      "text": "héllo",
+      "expect": "héllo"
+    },
+    {
+      "encoding": "utf-16le",
+      "text": "a🎉b",
+      "expect": "a🎉b"
+    },
+    {
+      "encoding": "utf-16be",
+      "text": "",
+      "expect": ""
+    },
+    {
+      "encoding": "utf-16be",
+      "text": "plain",
+      "expect": "plain"
+    },
+    {
+      "encoding": "utf-16be",
+      "text": "héllo",
+      "expect": "héllo"
+    },
+    {
+      "encoding": "utf-16be",
+      "text": "a🎉b",
+      "expect": "a🎉b"
+    },
+    {
+      "encoding": "utf-32le",
+      "text": "",
+      "expect": ""
+    },
+    {
+      "encoding": "utf-32le",
+      "text": "plain",
+      "expect": "plain"
+    },
+    {
+      "encoding": "utf-32le",
+      "text": "héllo",
+      "expect": "héllo"
+    },
+    {
+      "encoding": "utf-32le",
+      "text": "a🎉b",
+      "expect": "a🎉b"
+    },
+    {
+      "encoding": "utf-32be",
+      "text": "",
+      "expect": ""
+    },
+    {
+      "encoding": "utf-32be",
+      "text": "plain",
+      "expect": "plain"
+    },
+    {
+      "encoding": "utf-32be",
+      "text": "héllo",
+      "expect": "héllo"
+    },
+    {
+      "encoding": "utf-32be",
+      "text": "a🎉b",
+      "expect": "a🎉b"
+    },
+    {
+      "encoding": "ISO-8859-1",
+      "text": "",
+      "expect": ""
+    },
+    {
+      "encoding": "ISO-8859-1",
+      "text": "plain",
+      "expect": "plain"
+    },
+    {
+      "encoding": "ISO-8859-1",
+      "text": "héllo",
+      "expect": "héllo"
+    },
+    {
+      "encoding": "ISO-8859-1",
+      "text": "a🎉b",
+      "expect": "a??b"
+    },
+    {
+      "encoding": "windows-1252",
+      "text": "",
+      "expect": ""
+    },
+    {
+      "encoding": "windows-1252",
+      "text": "plain",
+      "expect": "plain"
+    },
+    {
+      "encoding": "windows-1252",
+      "text": "héllo",
+      "expect": "héllo"
+    },
+    {
+      "encoding": "windows-1252",
+      "text": "a🎉b",
+      "expect": "a??b"
+    }
+  ],
+  "toolSchemas": {
+    "write.js:writeFileTool": {
+      "name": "write_file",
+      "description": "Write content to a file. Creates the file if it does not exist, or overwrites if it does. Creates parent directories as needed.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Path to the file (relative to workdir or absolute)"
+          },
+          "content": {
+            "type": "string",
+            "description": "Content to write to the file"
+          },
+          "encoding": {
+            "type": "string",
+            "description": "Optional file encoding (e.g. \"ISO-8859-1\", \"windows-1252\", \"utf-16\"). Defaults to \"utf-8\". Use the encoding reported by read_file to match project conventions."
+          }
+        },
+        "required": [
+          "path",
+          "content"
+        ]
+      }
+    },
+    "edit.js:editFileTool": {
+      "name": "edit_file",
+      "description": "Replace specific text in a file. Use this for surgical edits. The old_string must match exactly (including whitespace and indentation).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Path to the file (relative to workdir or absolute)"
+          },
+          "old_string": {
+            "type": "string",
+            "description": "Exact text to find and replace. Must match exactly including whitespace."
+          },
+          "new_string": {
+            "type": "string",
+            "description": "Replacement text"
+          },
+          "replace_all": {
+            "type": "boolean",
+            "description": "Replace all occurrences (default: false). If false and multiple matches found, the operation fails."
+          }
+        },
+        "required": [
+          "path",
+          "old_string",
+          "new_string"
+        ]
+      }
+    },
+    "read.js:readFileTool": {
+      "name": "read_file",
+      "description": "Read the contents of a file or list directory contents. For text files: returns file content. For images (PNG, JPEG, GIF, WebP, BMP, SVG): returns base64-encoded data with MIME type metadata. For PDF files: extracts text content page by page. For directories: returns a tree-formatted listing of entries with file sizes.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Path to the file (relative to workdir or absolute)"
+          },
+          "offset": {
+            "type": "number",
+            "description": "Line number to start from (1-indexed). Default: 1. Only applies to text files."
+          },
+          "limit": {
+            "type": "number",
+            "description": "Maximum number of lines to read. Default: 2000. Only applies to text files."
+          }
+        },
+        "required": [
+          "path"
+        ]
+      }
+    }
+  }
+}

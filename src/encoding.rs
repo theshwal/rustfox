@@ -213,11 +213,17 @@ fn statistical_detect(buffer: &[u8]) -> Option<(String, f64)> {
 }
 
 /// The BOM bytes for an encoding, if the original writes one.
+///
+/// UTF-32 little-endian needs the four-byte form `FF FE 00 00`. Sharing the
+/// two-byte BOM with UTF-16LE would write a file whose first character reads
+/// back as U+0000, and the contract caught the two-byte version doing exactly
+/// that: it produced 2 bytes where the original wrote 4.
 pub fn bom_for(encoding: &str) -> &'static [u8] {
     match encoding {
         "utf-8" => &[0xEF, 0xBB, 0xBF],
-        "utf-16le" | "utf-32le" | "utf-32" => &[0xFF, 0xFE],
+        "utf-16le" => &[0xFF, 0xFE],
         "utf-16be" => &[0xFE, 0xFF],
+        "utf-32le" | "utf-32" => &[0xFF, 0xFE, 0x00, 0x00],
         "utf-32be" => &[0x00, 0x00, 0xFE, 0xFF],
         _ => &[],
     }
@@ -303,6 +309,10 @@ mod tests {
     fn bom_bytes_match_the_encoding() {
         assert_eq!(bom_for("utf-8"), &[0xEF, 0xBB, 0xBF]);
         assert_eq!(bom_for("utf-16be"), &[0xFE, 0xFF]);
+        assert_eq!(bom_for("utf-16le"), &[0xFF, 0xFE]);
+        // UTF-32 little-endian is four bytes, not the UTF-16 two-byte form.
+        assert_eq!(bom_for("utf-32le"), &[0xFF, 0xFE, 0x00, 0x00]);
+        assert_eq!(bom_for("utf-32be"), &[0x00, 0x00, 0xFE, 0xFF]);
         assert_eq!(bom_for("ISO-8859-1"), &[] as &[u8]);
     }
 }
